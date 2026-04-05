@@ -251,3 +251,5 @@ CRS = 0.35 \cdot SC + 0.25 \cdot CC + 0.20 \cdot MS + 0.20 \cdot EC
 
 
 
+#   D i p l o m a  
+ 
