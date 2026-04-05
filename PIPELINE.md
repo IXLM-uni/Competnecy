@@ -1,122 +1,52 @@
-Да. Если ты оставляешь O*NET как главный canonical source, а LLM — как слой извлечения, нормализации и проверки, то готовый pipeline может быть очень прямым, без лишней философии. По сути это конвейер: **occupation seed -> market evidence -> LLM extraction -> O*NET alignment -> profile assembly -> curriculum-readiness validation**. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+Ниже — итоговый pipeline в рабочем виде: на входе одна профессия, на выходе — структурированный профиль профессии, где O*NET дает каркас, рынок дает актуализацию, а LLM делает извлечение, нормализацию, сшивку и контроль дыр перед переходом к competency formalization и curriculum design. Это не “еще один анализ вакансий”, а конвейер подготовки **curriculum-ready** профиля, потому что в ваших материалах именно professional profile идет дальше в knowledge graph, backward design и генерацию программы. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
-## Pipeline
+## Вход
 
-Ниже — версия, которую уже можно класть в проектный документ. Она не “вообще про AI”, а именно про сбор полноценного профиля профессии для дальнейшей сборки образовательной программы. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+На входе у вас одна профессия в свободной форме, например “Data Engineer” или “Power Electronics Engineer”. Первый шаг — привязать это название к одной конкретной occupation в O*NET, иначе дальше начнут смешиваться соседние роли, seniority и организационные варианты одной и той же работы. [onetonline](https://www.onetonline.org)
 
-1. **Выбор профессии.**  
-Берешь occupation target и фиксируешь один O*NET-SOC anchor, чтобы дальше не смешивать соседние роли, seniority и организационные вариации. На этом шаге же фиксируешь scope: profession title, target context, language, labor market, STEM-domain. [onetcenter](https://www.onetcenter.org/database.html)
+После маппинга вы тянете из O*NET четыре опорных блока: Knowledge, Skills, Work Activities/Work Content и Tasks, а также их importance/value, потому что именно эта структура уже пригодна для машинной обработки и сравнения с рынком. Если хотите сделать систему чище, добавляйте еще связку `Tasks to DWAs`, потому что она помогает не хранить tasks и work activities как две параллельные, плохо связанные таблицы. [onetcenter](https://www.onetcenter.org/database.html)
 
-2. **Загрузка canonical слоя из O*NET.**  
-Для выбранной профессии вытаскиваешь минимум четыре блока: Knowledge, Skills, Work Activities/Work Content и Tasks; O*NET database и web services это поддерживают напрямую. Если хочешь машинную чистоту, дополнительно тянешь `Tasks to DWAs`, потому что именно этот файл связывает task statements с detailed work activities и occupation code. [onetcenter](https://www.onetcenter.org/dictionary/22.0/excel/tasks_to_dwas.html)
+## Сбор данных
 
-3. **Сбор рыночного корпуса.**  
-Собираешь корпус реальных job descriptions и вакансий по той же профессии, чтобы увидеть, как canonical-профиль живет в текущем рынке, а не только в reference taxonomy. Сохраняешь raw text, source URL, date, employer, title, region и dedup hash, иначе дальше нельзя будет нормально валидировать данные. [huggingface](https://huggingface.co/datasets/lang-uk/recruitment-dataset-job-descriptions-english)
+Дальше вы не ищете “все про профессию в интернете”, а собираете рыночный корпус по этой occupation cluster, то есть по названию роли и близким title-синонимам, чтобы получить свежий слой job postings и job descriptions. В ваших материалах job postings уже выступают как естественный источник для NLP/LLM extraction, multisource fusion и дальнейшего competency mapping, так что это не добавка сбоку, а штатный слой пайплайна. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
-4. **LLM extraction.**  
-LLM не пишет профессию, а делает три узкие задачи:  
-- извлекает skill/knowledge spans из рыночных текстов;  
-- извлекает task-like actions и outputs;  
-- нормализует формулировки к O*NET labels или к внутреннему controlled vocabulary. [arxiv](https://arxiv.org/html/2410.12052v1)
-Ключевое правило — сохранять `raw_span`, `context`, `normalized_label`, `source_id`, `confidence`, потому что без evidence span extraction быстро превращается в галлюцинацию. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+На этом этапе вы храните не только текст вакансии, но и метаданные: title, employer, date, location, URL, seniority hints, raw text и dedup hash, иначе позже нельзя будет ни считать рыночную поддержку, ни объяснить происхождение признака. Смысл прост: O*NET дает стабильную нормативную модель occupation, а рынок дает актуальный эмпирический срез, особенно важный для быстро меняющихся STEM- и IT-ролей. [onetcenter](https://www.onetcenter.org/dataCollection.html)
 
-5. **DACUM-сборка.**  
-Дальше из task pool собираешь компактный DACUM-chart: 5–10 duties, под ними 2–5 tasks на каждый duty. Но теперь это уже не workshop “на глаз”, а data-backed DACUM: каждая task-строка собрана из O*NET tasks/DWAs плюс подтверждена в рыночном корпусе и очищена LLM-нормализацией. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+## Роль LLM
 
-6. **Сборка финального профиля.**  
-На выходе у тебя одна запись по profession, внутри которой есть:
-- profession metadata;
-- knowledge;
-- skills;
-- work content;
-- tasks;
-- для каждого параметра: criterion, data value, source evidence, confidence, alignment status. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
-Именно это у тебя потом станет входом в competency formalization, knowledge graph и curriculum generation. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+Вот здесь у ИИ появляется конкретная работа, и она шире, чем “тупо парсить признаки”. LLM в этом pipeline делает четыре вещи: извлекает из вакансий spans по skills, knowledge, task-like actions и outputs; нормализует формулировки; сопоставляет рыночные фрагменты с O*NET-элементами; и отдельно помечает новые рыночные элементы, которые не покрыты текущим O*NET-профилем. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
-## Что на выходе
+Это важно: LLM не считается источником истины о профессии, а работает как слой extraction + alignment + contradiction detection, потому что в ваших материалах extraction, normalization, evidence spans и knowledge graph fusion как раз и описаны как машинный контур между сырыми текстами и формальным профилем. Нормальный выход LLM на этом шаге — не эссе, а таблица вида `market_span -> normalized_label -> linked_onet_item_or_NEW -> confidence -> source_id -> evidence_span`, потому что без evidence span и source id дальнейшая валидация разваливается. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
-Финальный объект лучше хранить не как текст, а как структурированный profile JSON. В ваших материалах уже есть логика, что DACUM/CTA/HPT и competency mapping можно переводить в JSON-представление с задачами, знаниями, навыками, quality metrics, context и errors. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+## Сшивка
 
-Минимальная структура может быть такой:
+После этого вы строите fusion layer, где для каждого элемента O*NET считаете его статус на рынке. То есть для каждого knowledge, skill, work activity и task вы храните минимум такие поля: `onet_importance`, `market_support`, `market_recency`, `alignment_confidence`, `status`, `evidence[]`. [onetcenter](https://www.onetcenter.org/dataCollection.html)
 
-```json
-{
-  "profession_id": "15-2051.00",
-  "profession_title": "Data Scientist",
-  "source_anchor": "O*NET",
-  "knowledge": [
-    {
-      "label": "Mathematics",
-      "criterion": "importance>=threshold",
-      "data_value": 78,
-      "evidence": ["onet:knowledge:mathematics"],
-      "market_support": 0.64
-    }
-  ],
-  "skills": [
-    {
-      "label": "Programming",
-      "criterion": "importance>=threshold",
-      "data_value": 81,
-      "evidence": ["onet:skill:programming", "job:span:214"],
-      "market_support": 0.71
-    }
-  ],
-  "work_content": [
-    {
-      "label": "Analyzing data or information",
-      "criterion": "canonical+market",
-      "data_value": 1,
-      "evidence": ["onet:dwa:...","job:span:..."]
-    }
-  ],
-  "tasks": [
-    {
-      "duty": "Prepare and validate data",
-      "task": "Clean, transform, and validate data for downstream analysis",
-      "criterion": "has_output+has_quality+canonical_match",
-      "data_value": 1,
-      "evidence": ["onet:task:...", "job:span:..."],
-      "output": "validated dataset",
-      "quality": "accuracy, completeness",
-      "required_skills": ["Programming", "Critical Thinking"]
-    }
-  ]
-}
-```
+Я бы использовал такую простую схему статусов, потому что она легко объясняется и не превращается в онтологический цирк: [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
-Это уже нормальный инженерный артефакт: не эссе, а объект, из которого можно строить программу.
+- `supported` — элемент O*NET хорошо подтверждается рынком. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+- `weak` — элемент есть в O*NET, но в вакансиях поддержка слабая. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+- `stale` — элемент важен в O*NET, но почти исчезает в свежем рыночном корпусе. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+- `emerging` — элемент устойчиво встречается на рынке, но в O*NET отсутствует или выражен слабо. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
-## Валидация
+На этом же шаге удобно собрать компактный DACUM-like слой: duties и tasks уже не “с потолка”, а как агрегат из O*NET tasks, `Tasks to DWAs` и рыночных task-spans, нормализованных через LLM. В ваших материалах DACUM и JSON-представление задач, знаний, навыков, errors, context и quality metrics уже прямо описаны как удобная форма операционализации профиля, так что это хороший формат финальной сборки. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
 
-Вот здесь важный сдвиг. Валидировать надо не “похож ли профиль на O*NET”, а “достаточно ли он полный и связный, чтобы стать основанием для curriculum design”. Поэтому валидация делится на два слоя. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+## Результат и валидация
 
-### 1. Валидация extraction-слоя
+Финальный результат — не текстовый обзор профессии, а occupation profile в структурированном виде, пригодный для дальнейшей competency formalization и curriculum generation. Внутри него должны быть: profession metadata, список knowledge, skills, work content, tasks, а для каждого элемента — criterion, data value, market status, evidence spans, confidence и связи с task/output/quality. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
 
-Это классическая ML-часть. LLM-extractor для skills/knowledge проверяешь на размеченных benchmark-датасетах, например SkillSpan, где есть 14.5K предложений и более 12.5K skill spans, а Skill-LLM показывает на этом наборе Span F1 64.8% на test set. [adu.autonomy](https://adu.autonomy.work/posts/2023_11_14_skills-extraction-w-llms/)
-То есть ты отдельно доказываешь, что твой extractor вообще умеет вытаскивать признаки из текста, а не рисует их из воздуха. [aclanthology](https://aclanthology.org/2024.nlp4hr-1.3.pdf)
+Практически это выглядит так:
 
-### 2. Валидация profile-слоя
+| Блок | Что лежит внутри | Зачем нужен дальше |
+|---|---|---|
+| Profession metadata | occupation id, title, scope, market, date window  [onetcenter](https://www.onetcenter.org/database.html) | Чтобы профиль был однозначным и воспроизводимым  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
+| Knowledge | O*NET knowledge + market support + evidence  [onetcenter](https://www.onetcenter.org/database.html) | Для построения learning outcomes и prerequisite map  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
+| Skills | O*NET skills + market support + emerging additions  [onetcenter](https://www.onetcenter.org/database.html) | Для competency graph и module outcomes  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
+| Work content | normalized work activities and context  [onetcenter](https://www.onetcenter.org/dictionary/22.0/excel/tasks_to_dwas.html) | Для понимания типов деятельности, а не только списков тем  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) |
+| Tasks | DACUM-like duties/tasks + outputs + quality metrics  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) | Для assessment design и практико-ориентированных модулей  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
 
-Это уже не F1 по токенам, а проверка готовности профиля к образованию. Я бы оставил четыре объективных теста:
+Валидация у такого pipeline должна идти в двух независимых контурах. Первый — это проверка самого LLM extraction слоя на benchmark-логике: модель должна стабильно извлекать skill/knowledge/task spans и возвращать evidence, а не сочинять; в ваших материалах отдельно упомянуты LLM-based skill extraction и evidence-based extraction как штатная часть такого контура. Второй — это проверка готовности самого профиля к curriculum design: у каждого core task должен быть связанный output, quality criterion и required capability, а у каждого critical skill или knowledge должен быть хотя бы один task, где он реально используется. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
 
-- **Canonical coverage.** Доля финальных knowledge/skills/work content/tasks, которые имеют O*NET alignment. [onetonline](https://www.onetonline.org/help/online/details)
-- **Market support.** Доля финальных элементов, которые подтверждаются корпусом реальных вакансий. [huggingface](https://huggingface.co/datasets/jacob-hugging-face/job-descriptions)
-- **Structural completeness.** У каждого task должен быть хотя бы один output, один quality criterion и хотя бы один required skill/knowledge; без этого задача не годится для curriculum mapping. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
-- **Cross-field closure.** Все critical skills и knowledge должны быть использованы хотя бы в одном task, а все core tasks должны опираться хотя бы на один skill/knowledge; если есть “сироты”, профиль неполный. [onetcenter](https://www.onetcenter.org/database.html)
+Если коротко, критерий приемки здесь такой: профиль считается готовым, когда O*NET baseline связан с рынком через evidence-based LLM alignment, все ключевые элементы имеют рыночную поддержку или честный статус `weak/stale/emerging`, а структура `knowledge -> skills -> work content -> tasks -> outputs -> quality` замкнута без сиротских узлов. Именно после этого профиль можно без натяжки передавать дальше в knowledge graph, backward design и сборку образовательной программы. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
 
-Вот это и есть твоя главная метрика качества данных. Не “мы похожи на датасет”, а “у нас нет дыр в структуре, нужной для сборки образовательной программы”. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
-
-## Критерий готовности
-
-Я бы формулировал финальный acceptance rule жестко и коротко. Профиль считается годным, если одновременно выполняются такие условия:
-
-- extractor quality подтверждена benchmark-метрикой на размеченном наборе вроде SkillSpan; [aclanthology](https://aclanthology.org/2022.naacl-main.366/)
-- все элементы профиля привязаны к raw evidence span или к O*NET record; [arxiv](https://arxiv.org/html/2410.12052v1)
-- core tasks замкнуты в цепочку `task -> output -> quality -> required capability`; [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
-- profile coverage достаточна для backward design, то есть из профиля можно однозначно вывести learning outcomes, assessments и module map. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
-
-Если сказать совсем по-человечески: хороший профиль — это не список слов “что надо знать”, а рабочая карта профессии, из которой без натяжки получается учебная программа. Если из профиля нельзя построить задания, критерии оценки и последовательность модулей, значит pipeline еще не закончен. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
-
-Хочешь, я следующим сообщением соберу тебе это в совсем прикладной форме:  
-**1) блок-схема pipeline, 2) JSON-schema полей, 3) набор формул метрик валидации, 4) пример на одной конкретной профессии.**
+Если хочешь, следующим сообщением я превращу это в совсем инженерную форму: **псевдокод pipeline + JSON-schema финального профиля + список метрик приемки по шагам**.
