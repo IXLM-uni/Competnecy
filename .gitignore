@@ -21,7 +21,8 @@ Global_services/Payment/
 Global_services/Reddit/__pycache__/
 Global_services/.pytest_cache/
 Global_services/chunks_dump.json
-
+Global_services/AI/models/
+Global_services/AI/data/
 # Pipeline artifacts
 artifacts/
 raw_corpus/
