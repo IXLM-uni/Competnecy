@@ -1,0 +1,76 @@
+# ================================================================================
+# РУКОВОДСТВО К ФАЙЛУ: requirements.txt — Зависимости Competnecy/Global_services
+# ================================================================================
+#
+# НАЗНАЧЕНИЕ:
+#     Зависимости для всех сервисов и скриптов проекта Competnecy.
+#     Устанавливается в venv Global_services.
+#
+# УСТАНОВКА:
+#     cd /home/alexander/Projects/Competnecy
+#     python -m venv Global_services/.venv
+#     source Global_services/.venv/bin/activate
+#     pip install -r Global_services/requirements.txt
+#
+# ФИКСАЦИЯ ВЕРСИЙ (после установки):
+#     pip freeze > Global_services/requirements.lock
+#
+# СЕРВИСЫ:
+#     Reddit/     — reddit_client.py (httpx, openai)
+#     AI/         — llm_service.py, crawler4ai клиент (httpx, openai, qdrant-client)
+#     Explore/    — parse_tgstat_vacancies, extract_professions (selectolax)
+#                   ingest_tg_vacancies (qdrant-client, openai)
+#                   hh_vacancy_tool (httpx, openai)
+#                   reddit_vacancy_tool (httpx, openai)
+# ================================================================================
+
+# --- FastAPI ---
+fastapi
+uvicorn[standard]
+pydantic-settings
+
+# --- Auth Service (auth.py) ---
+PyJWT
+bcrypt
+pyotp
+httpx
+qrcode
+cryptography
+Pillow
+
+# --- Async / HTTP ---
+aiofiles
+aiohttp
+aiolimiter
+aiosignal
+aiosqlite
+anyio
+h11
+httpcore
+
+# --- Data / Config ---
+python-dotenv
+PyYAML
+
+# --- Testing ---
+pytest
+pytest-asyncio
+
+# --- Notifications (Celery + Redis + Email/TG/In-App) ---
+celery
+redis
+aiosmtplib
+
+# --- LLM / AI (Cloud.ru, Qdrant, Embeddings) ---
+openai
+qdrant-client
+
+# --- Web Parsing / Crawling ---
+selectolax
+
+# --- Reddit (Global_services/Reddit/reddit_client.py) ---
+# httpx уже выше — используется для anonymous и OAuth2 запросов к Reddit JSON API
+# asyncpraw не нужен: реализован собственный клиент поверх httpx
+
+# --- Competency Pipeline (competency_pipeline/) ---
+# openai, httpx уже выше

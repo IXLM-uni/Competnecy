@@ -1,8 +1,52 @@
-@"
+# Python
 .venv/
 venv/
 __pycache__/
 *.pyc
+*.pyo
 *.log
 .env
-"@ > .gitignore
+.env.local
+.pytest_cache/
+
+# Global_services — исключаем тяжёлые зависимости, но включаем AI модуль
+Global_services/.venv/
+Global_services/*/models/
+Global_services/*/.venv/
+Global_services/Auth/
+Global_services/Calendar/
+Global_services/Document_generator/
+Global_services/Notifications/
+Global_services/Payment/
+Global_services/Reddit/__pycache__/
+Global_services/.pytest_cache/
+Global_services/chunks_dump.json
+
+# Pipeline artifacts
+artifacts/
+raw_corpus/
+*.tmp
+*.cache
+
+# Node
+node_modules/
+.next/
+frontend/node_modules/
+frontend/.next/
+frontend/test-results/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large files
+*.zip
+*.gz
+*.tar
+*.rar

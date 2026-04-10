@@ -1,0 +1,11 @@
+# Competency Pipeline — thin client dependencies
+openai>=1.0
+httpx>=0.24
+python-dotenv>=1.0
+fastapi>=0.100
+uvicorn>=0.20
+sse-starlette>=1.0
+pydantic>=2.0
+pandas>=2.0
+openpyxl>=3.0
+qdrant-client>=1.7

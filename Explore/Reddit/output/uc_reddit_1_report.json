@@ -1,0 +1,25 @@
+{
+  "status": "success",
+  "uc": "UC-REDDIT-1",
+  "query": "Python developer machine learning",
+  "output_dir": "/home/alexander/Projects/Competnecy/Explore/Reddit/output",
+  "subreddits": [
+    "cscareerquestions",
+    "jobs",
+    "remotework",
+    "ExperiencedDevs",
+    "datascience",
+    "MachineLearning",
+    "jobsearch",
+    "forhire"
+  ],
+  "top_posts": 5,
+  "top_comments": 3,
+  "use_global_search": true,
+  "markdown_files": [
+    "/home/alexander/Projects/Competnecy/Explore/Reddit/output/python_developer_machine_learning_reddit_20260409_164736.md"
+  ],
+  "raw_json_files": [
+    "/home/alexander/Projects/Competnecy/Explore/Reddit/output/python_developer_machine_learning_reddit_20260409_164736_raw.json"
+  ]
+}

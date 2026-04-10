@@ -1,0 +1,84 @@
+# ================================================================================
+# Руководство: docker-compose для инфраструктуры Competnecy
+# ================================================================================
+#
+# Сервисы:
+#   qdrant   — векторное хранилище для индексации TG-вакансий (порт 6333/6334)
+#   crawler  — Crawler4AI для парсинга hh.ru вакансий через LLM-инструмент (порт 11235)
+#
+# Скрипты Explore/ и competency_pipeline/ запускаются локально в venv на хосте.
+#
+# Запуск:         docker-compose up -d
+# Остановка:      docker-compose down
+# Сборка crawler: docker-compose build crawler
+# Логи:           docker-compose logs -f
+# Проверка Qdrant: curl http://localhost:6333/healthz
+# Проверка Crawler: curl http://localhost:11235/health
+#
+# Переменные окружения читаются скриптами напрямую из Global_services/.env
+# ================================================================================
+
+version: "3.9"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    container_name: competnecy-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      QDRANT__SERVICE__GRPC_PORT: "6334"
+      QDRANT__SERVICE__HTTP_PORT: "6333"
+    healthcheck:
+      # qdrant образ содержит wget, но не curl — используем wget
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:6333/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  crawler:
+    build:
+      context: ./Global_services/AI
+      dockerfile: Dockerfile
+      target: crawler4ai
+    container_name: competnecy-crawler
+    restart: unless-stopped
+    ports:
+      - "11235:11235"
+    environment:
+      CRAWL4AI_PORT: "11235"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11235/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
+
+  searxng:
+    image: searxng/searxng:latest
+    container_name: competnecy-searxng
+    restart: unless-stopped
+    ports:
+      - "8888:8080"
+    environment:
+      SEARXNG_BASE_URL: "http://localhost:8888/"
+      SEARXNG_INSTANCE_NAME: competnecy-searxng
+      SEARXNG_LIMITER: "false"
+      SEARXNG_PUBLIC_INSTANCE: "false"
+    volumes:
+      - ./infra/searxng/settings.yml:/etc/searxng/settings.yml:ro
+      - ./infra/searxng/limiter.toml:/etc/searxng/limiter.toml:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8080/search?q=test&format=json"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  qdrant_data:

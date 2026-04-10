@@ -1,52 +1,379 @@
-Ниже — итоговый pipeline в рабочем виде: на входе одна профессия, на выходе — структурированный профиль профессии, где O*NET дает каркас, рынок дает актуализацию, а LLM делает извлечение, нормализацию, сшивку и контроль дыр перед переходом к competency formalization и curriculum design. Это не “еще один анализ вакансий”, а конвейер подготовки **curriculum-ready** профиля, потому что в ваших материалах именно professional profile идет дальше в knowledge graph, backward design и генерацию программы. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+# SOTA Pipeline: `Competency Intelligence for Water Domain`
 
-## Вход
+## Что на входе
 
-На входе у вас одна профессия в свободной форме, например “Data Engineer” или “Power Electronics Engineer”. Первый шаг — привязать это название к одной конкретной occupation в O*NET, иначе дальше начнут смешиваться соседние роли, seniority и организационные варианты одной и той же работы. [onetonline](https://www.onetonline.org)
+Не JSON про “профессию вообще”, а три слоя входа.
 
-После маппинга вы тянете из O*NET четыре опорных блока: Knowledge, Skills, Work Activities/Work Content и Tasks, а также их importance/value, потому что именно эта структура уже пригодна для машинной обработки и сравнения с рынком. Если хотите сделать систему чище, добавляйте еще связку `Tasks to DWAs`, потому что она помогает не хранить tasks и work activities как две параллельные, плохо связанные таблицы. [onetcenter](https://www.onetcenter.org/database.html)
+### 1. Целевая роль
+Пример:
 
-## Сбор данных
+- `Hydrologist`
+- `Water Resources Data Scientist`
+- `Flood Risk Analyst`
+- `Hydroinformatics Engineer`
+- `Remote Sensing Specialist for Water Systems`
 
-Дальше вы не ищете “все про профессию в интернете”, а собираете рыночный корпус по этой occupation cluster, то есть по названию роли и близким title-синонимам, чтобы получить свежий слой job postings и job descriptions. В ваших материалах job postings уже выступают как естественный источник для NLP/LLM extraction, multisource fusion и дальнейшего competency mapping, так что это не добавка сбоку, а штатный слой пайплайна. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+### 2. Доменный контекст
+Пример:
 
-На этом этапе вы храните не только текст вакансии, но и метаданные: title, employer, date, location, URL, seniority hints, raw text и dedup hash, иначе позже нельзя будет ни считать рыночную поддержку, ни объяснить происхождение признака. Смысл прост: O*NET дает стабильную нормативную модель occupation, а рынок дает актуальный эмпирический срез, особенно важный для быстро меняющихся STEM- и IT-ролей. [onetcenter](https://www.onetcenter.org/dataCollection.html)
+- речная гидрология
+- flood forecasting
+- water quality monitoring
+- hydro-meteorological analytics
+- GIS + remote sensing for water systems
 
-## Роль LLM
+### 3. Корпус источников
+Не один тип источника, а стек:
 
-Вот здесь у ИИ появляется конкретная работа, и она шире, чем “тупо парсить признаки”. LLM в этом pipeline делает четыре вещи: извлекает из вакансий spans по skills, knowledge, task-like actions и outputs; нормализует формулировки; сопоставляет рыночные фрагменты с O*NET-элементами; и отдельно помечает новые рыночные элементы, которые не покрыты текущим O*NET-профилем. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+- `O*NET`
+- [ESCO](cci:9://file:///home/alexander/Projects/Competnecy/data/ESCO:0:0-0:0)
+- вакансии
+- профстандарты
+- научные статьи
+- course syllabi
+- project case studies
+- рабочие артефакты
+- domain tools docs
+- интервью экспертов
+- water datasets documentation
 
-Это важно: LLM не считается источником истины о профессии, а работает как слой extraction + alignment + contradiction detection, потому что в ваших материалах extraction, normalization, evidence spans и knowledge graph fusion как раз и описаны как машинный контур между сырыми текстами и формальным профилем. Нормальный выход LLM на этом шаге — не эссе, а таблица вида `market_span -> normalized_label -> linked_onet_item_or_NEW -> confidence -> source_id -> evidence_span`, потому что без evidence span и source id дальнейшая валидация разваливается. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+---
 
-## Сшивка
+# Главный принцип пайплайна
 
-После этого вы строите fusion layer, где для каждого элемента O*NET считаете его статус на рынке. То есть для каждого knowledge, skill, work activity и task вы храните минимум такие поля: `onet_importance`, `market_support`, `market_recency`, `alignment_confidence`, `status`, `evidence[]`. [onetcenter](https://www.onetcenter.org/dataCollection.html)
+## JSON не должен быть внутренним языком мышления
 
-Я бы использовал такую простую схему статусов, потому что она легко объясняется и не превращается в онтологический цирк: [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+Внутри пайплайна основной артефакт должен быть **Markdown-first**, а не JSON-first.
 
-- `supported` — элемент O*NET хорошо подтверждается рынком. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
-- `weak` — элемент есть в O*NET, но в вакансиях поддержка слабая. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
-- `stale` — элемент важен в O*NET, но почти исчезает в свежем рыночном корпусе. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
-- `emerging` — элемент устойчиво встречается на рынке, но в O*NET отсутствует или выражен слабо. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+Правило:
 
-На этом же шаге удобно собрать компактный DACUM-like слой: duties и tasks уже не “с потолка”, а как агрегат из O*NET tasks, `Tasks to DWAs` и рыночных task-spans, нормализованных через LLM. В ваших материалах DACUM и JSON-представление задач, знаний, навыков, errors, context и quality metrics уже прямо описаны как удобная форма операционализации профиля, так что это хороший формат финальной сборки. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+- **Markdown** = мышление, аргументация, evidence, конфликтующие сигналы
+- **JSON/Parquet/Graph tables** = только технические контракты и индексы
 
-## Результат и валидация
+То есть:
 
-Финальный результат — не текстовый обзор профессии, а occupation profile в структурированном виде, пригодный для дальнейшей competency formalization и curriculum generation. Внутри него должны быть: profession metadata, список knowledge, skills, work content, tasks, а для каждого элемента — criterion, data value, market status, evidence spans, confidence и связи с task/output/quality. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+- агент **читает документы**
+- агент **пишет структурированные md-артефакты**
 
-Практически это выглядит так:
+## Stage 0. Role framing
 
-| Блок | Что лежит внутри | Зачем нужен дальше |
-|---|---|---|
-| Profession metadata | occupation id, title, scope, market, date window  [onetcenter](https://www.onetcenter.org/database.html) | Чтобы профиль был однозначным и воспроизводимым  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
-| Knowledge | O*NET knowledge + market support + evidence  [onetcenter](https://www.onetcenter.org/database.html) | Для построения learning outcomes и prerequisite map  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
-| Skills | O*NET skills + market support + emerging additions  [onetcenter](https://www.onetcenter.org/database.html) | Для competency graph и module outcomes  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
-| Work content | normalized work activities and context  [onetcenter](https://www.onetcenter.org/dictionary/22.0/excel/tasks_to_dwas.html) | Для понимания типов деятельности, а не только списков тем  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) |
-| Tasks | DACUM-like duties/tasks + outputs + quality metrics  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) | Для assessment design и практико-ориентированных модулей  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md) |
+### Цель
+Жестко зафиксировать границы роли и не смешать соседние профессии.
 
-Валидация у такого pipeline должна идти в двух независимых контурах. Первый — это проверка самого LLM extraction слоя на benchmark-логике: модель должна стабильно извлекать skill/knowledge/task spans и возвращать evidence, а не сочинять; в ваших материалах отдельно упомянуты LLM-based skill extraction и evidence-based extraction как штатная часть такого контура. Второй — это проверка готовности самого профиля к curriculum design: у каждого core task должен быть связанный output, quality criterion и required capability, а у каждого critical skill или knowledge должен быть хотя бы один task, где он реально используется. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+### Вход
+Свободная формулировка роли.
 
-Если коротко, критерий приемки здесь такой: профиль считается готовым, когда O*NET baseline связан с рынком через evidence-based LLM alignment, все ключевые элементы имеют рыночную поддержку или честный статус `weak/stale/emerging`, а структура `knowledge -> skills -> work content -> tasks -> outputs -> quality` замкнута без сиротских узлов. Именно после этого профиль можно без натяжки передавать дальше в knowledge graph, backward design и сборку образовательной программы. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
+### Выход
+`role_scope.md`
 
-Если хочешь, следующим сообщением я превращу это в совсем инженерную форму: **псевдокод pipeline + JSON-schema финального профиля + список метрик приемки по шагам**.
+### Содержит
+- название роли
+- альтернативные title-синонимы
+- уровень подготовки
+- отраслевой контекст
+- регион
+- исключения смежных ролей
+- гипотезы для поиска
+
+---
+## Stage 1. Research ingestion
+
+### Цель
+Собрать корпус источников по роли, деятельности и программам обучения.
+
+### Источники
+- вакансии
+- профессиональные стандарты
+- научные статьи
+- course syllabi
+- учебные планы
+- документы университетов
+- отраслевые документы
+- software/docs/tools
+
+### Важно
+Интернет нужен **не как источник истины**, а как:
+- benchmark
+- актуализация рынка
+- источник реальных программ
+- источник реальных дисциплин, часов, практик и capstone-форматов
+
+### Выход
+- `raw_corpus/`
+- `raw_corpus_manifest.md`
+- `source_registry.md`
+
+---
+## Stage 2. Evidence synthesis
+
+### Цель
+Собрать **единый evidence-документ по деятельности**.
+
+### Что делает агент
+Читает корпус и пишет:
+
+`Evidence.md`
+
+### Что должно быть внутри
+- ядро роли
+- ключевые функции деятельности
+- типовые задачи
+- знания
+- умения
+- инструменты
+- артефакты деятельности
+- критерии качества
+- контексты выполнения
+- типичные ошибки и риски
+- взаимодействие с другими ролями
+- ссылки на источники
+
+### Критическое правило
+На этом этапе нельзя схлопывать всё в голый список `skills[]`.
+
+---
+## Stage 3. Competency profile generation
+
+### Цель
+Преобразовать `Evidence.md` в профиль компетенций.
+
+### Механика
+Переход делается **напрямую из markdown в markdown**, без обязательного JSON-слоя.
+
+### Правила преобразования
+- задача / действие -> `умеет ...`
+- знания -> `знает ...`
+- критерии качества -> `способен выполнять ... с требуемым качеством ...`
+- контекст -> `умеет действовать в условиях ...`
+- ошибки и риски -> `учитывает ...`, `избегает ...`, `соблюдает ...`
+- взаимодействие -> `умеет взаимодействовать с ...`
+
+### Выход
+`Competency_Profile.md`
+
+### Содержит
+- профессиональные компетенции
+- общие компетенции
+- индикаторы достижения
+- связь компетенций с задачами деятельности
+- приоритетность компетенций
+
+---
+## Stage 4. Program blueprint generation
+
+### Цель
+Преобразовать профиль компетенций в структуру образовательной программы.
+
+### Логика
+- компетенции -> дисциплины
+- компетенции -> практики
+- компетенции -> проектная работа
+- компетенции -> формы контроля
+- компетенции -> логика семестров
+
+### Использует интернет
+На этом этапе интернет используется для:
+- benchmark существующих программ
+- сверки структуры дисциплин и модулей
+- проверки типовых часов и кредитов
+- поиска реалистичных форматов практики, capstone и аттестации
+
+### Ограничение
+Интернет здесь не является единственным источником истины: основой остаются `Evidence.md` и `Competency_Profile.md`.
+
+### Выход
+`Program_Blueprint.md`
+
+### Содержит
+- перечень дисциплин
+- модули
+- последовательность освоения
+- учебную практику
+- проектную практику
+- производственную практику
+- capstone / итоговый проект
+- формы аттестации
+
+---
+## Stage 5. Curriculum table generation
+
+### Цель
+Собрать финальный competency-based учебный план.
+
+### Выход
+`Curriculum_Table.md`
+
+### Для каждой дисциплины фиксируем
+- семестр
+- часы
+- кредиты
+- лекции
+- практики / лабораторные
+- самостоятельная работа
+- форма контроля
+- какие компетенции покрывает
+
+### Для практики фиксируем
+- тип практики
+- семестр
+- объем часов
+- кредиты
+- результаты практики
+- артефакты практики
+- критерии оценки
+
+---
+## Stage 6. Review and correction
+
+### Цель
+Проверить, что программа не красивая на бумаге, а реально покрывает деятельность.
+
+### Проверяем
+- у каждой ключевой компетенции есть покрытие дисциплинами или практикой
+- у дисциплин есть смысл, а не только красивые названия
+- часы и кредиты не взяты с потолка
+- практика встроена в программу, а не приклеена в конце
+- программа соотнесена с реальными benchmark-программами
+
+### Выход
+- `Review_Notes.md`
+- `Program_v2.md`
+
+---
+# Какие сервисы нужны
+
+## 1. `research_ingestion_service`
+Отвечает за поиск, скачивание и нормализацию источников в markdown.
+
+### Вход
+- html
+- md
+- pdf
+- docx
+- txt
+- url
+
+### Выход
+- нормализованные markdown-источники
+- manifest источников
+
+---
+## 2. `evidence_synthesis_service`
+Строит `Evidence.md` со ссылками на источники.
+
+---
+## 3. `competency_profile_service`
+Переводит `Evidence.md` в `Competency_Profile.md`.
+
+### Отвечает за
+- формулировку компетенций
+- индикаторы достижения
+- связь с задачами деятельности
+
+---
+## 4. `curriculum_generation_service`
+Переводит профиль компетенций в структуру программы.
+
+### Отвечает за
+- дисциплины
+- часы
+- кредиты
+- практики
+- проектную работу
+- формы контроля
+- матрицу покрытия компетенций
+
+---
+## 5. `review_service`
+Нужен для экспертной проверки и коррекции программы.
+
+---
+# Какие артефакты нужны
+
+## Обязательные
+- `role_scope.md`
+- `raw_corpus_manifest.md`
+- `Evidence.md`
+- `Competency_Profile.md`
+- `Program_Blueprint.md`
+- `Curriculum_Table.md`
+- `Review_Notes.md`
+
+---
+# Как переводить Evidence.md в образовательные результаты
+
+## Короткий ответ
+Не через JSON.
+Не через граф.
+Через прямое markdown-to-markdown преобразование по педагогическому шаблону.
+
+## Формула
+- из задачи -> `умеет ...`
+- из знания -> `знает ...`
+- из качества -> `способен выполнять ... с требуемым качеством ...`
+- из контекста -> `умеет действовать в условиях ...`
+- из риска -> `учитывает ...`, `избегает ...`
+- из взаимодействия -> `умеет взаимодействовать с ...`
+
+---
+# Как переводить компетенции в дисциплины, часы, кредиты и практику
+
+## Правило 1
+Если компетенция требует в первую очередь теоретической базы -> дисциплина.
+
+## Правило 2
+Если компетенция требует повторяемой отработки действий -> практикум / лабораторная.
+
+## Правило 3
+Если компетенция требует интеграции нескольких навыков -> проектный модуль.
+
+## Правило 4
+Если компетенция требует работы в реальном профессиональном контексте -> практика / стажировка.
+
+## Правило 5
+Часы и кредиты назначаются по:
+- сложности
+- критичности для профиля
+- доле практики
+- требуемой глубине освоения
+
+---
+# Нужно ли использовать интернет для составления программ
+
+## Да, нужно
+Но не как единственный источник истины.
+
+## Интернет нужен для
+- benchmark существующих программ
+- поиска реальных syllabi
+- поиска распределения дисциплин по семестрам
+- поиска примеров часов, кредитов и практик
+- проверки актуальности инструментов и тем
+
+## Интернет не должен быть единственным основанием для
+- финального списка компетенций
+- финального распределения кредитов
+- финальной структуры программы
+
+## Формула
+`Evidence + benchmark programs + LLM synthesis + expert review`
+
+---
+# Финальный формат результата
+
+На выходе нужен не просто список learning outcomes, а **competency-based educational program**.
+
+## Она должна содержать
+- профиль компетенций
+- дисциплины
+- часы по дисциплинам
+- кредиты по дисциплинам
+- практики
+- проектную работу
+- формы аттестации
+- матрицу `компетенция -> дисциплина/практика`
+
+---
+# Итоговый принцип
+
+**Model thinks in Markdown, program is assembled through competencies, not through raw JSON compression.**

@@ -95,41 +95,42 @@ LLM здесь полезен, но в очень конкретной роли:
 
 Ниже — минимальная матрица, которую реально можно валидировать, и она не разваливается в “все обо всем”. DACUM здесь нужен как форма представления: Duty -> Task, а признаки навешиваются на task-уровень. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md)
 
-| Признак | Что хранить | Откуда брать | Объективная проверка |
-|---|---|---|---|
-| Объект работы | С чем роль работает: данные, документы, оборудование, сигналы  [onetcenter](https://www.onetcenter.org/content.html) | O*NET Work Activities/Tasks, ESCO, вакансии  [onetcenter](https://www.onetcenter.org/database.html) | Для каждого объекта должен существовать хотя бы один task, который этот объект принимает или меняет |
-| Действие | 6–10 core tasks в форме DACUM  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) | O*NET Tasks to DWAs, вакансии, LLM extraction  [onetcenter](https://www.onetcenter.org/database.html) | Task проходит, если встречается в canonical source и в market corpus |
-| Артефакт | Что остается после выполнения task: pipeline, отчет, модель, протокол, код  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) | Вакансии, job descriptions, кейсы  [huggingface](https://huggingface.co/datasets/lang-uk/recruitment-dataset-job-descriptions-english) | У каждого task должен быть хотя бы один наблюдаемый output |
-| Качество | Как понять, что output не мусор: accuracy, timeliness, reliability, safety, compliance  [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/0e16c8c8-f3a9-42b9-b916-dea3f88db643/Metodologicheskie_podkhody_k_opisaniiu_professionalnoi_deiatelnosti.md) | O*NET descriptors, вакансии, SLA/requirements  [onetcenter](https://www.onetcenter.org/content.html) | У каждого output должен быть хотя бы один quality criterion |
-| Требуемая способность | Какое знание или skill нужен, чтобы task выполнить  [onetcenter](https://www.onetcenter.org/content.html) | O*NET Skills/Knowledge, ESCO skills, LLM span extraction  [onetcenter](https://www.onetcenter.org/content.html) | Каждый skill должен быть привязан минимум к одному task и одному output |
+result = await run_full_pipeline(
+    role_scope="ML Engineer",
+    source_specs=source_specs
+)
+```
 
-Вот и все. Если признак нельзя привязать к task, output или canonical taxonomy, он не идет в профиль.
+### Возобновление после ошибок
 
-## Пример: Data Engineer
+```python
+from competency_pipeline import resume_pipeline_from_stage, PipelineStage
 
-Возьмем Data Engineer как рыночную роль для STEM-программы, а DACUM-chart соберем из рыночных job descriptions плюс canonical occupational layers. В реальных описаниях этой роли стабильно встречаются ingestion данных, построение и поддержка pipelines, преобразование raw data, quality checks, monitoring и troubleshooting. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+# Возобновление с этапа компетенций
+result = await resume_pipeline_from_stage(
+    stage=PipelineStage.COMPETENCY_PROFILE,
+    role_scope="Data Analyst",
+    artifacts_dir="./existing_artifacts"
+)
+```
 
-Упрощенный DACUM для Data Engineer может выглядеть так: [indeed](https://www.indeed.com/q-etl-data-engineer-jobs.html)
-- Duty A. Собирать данные: подключать источники, тянуть raw data, проверять схему и формат. [coursera](https://www.coursera.org/articles/what-does-a-data-engineer-do-and-how-do-i-become-one)
-- Duty B. Готовить данные: чистить, трансформировать, загружать в целевое хранилище, поддерживать pipeline. [resources.workable](https://resources.workable.com/data-engineer-job-description)
-- Duty C. Держать систему живой: мониторить jobs, ловить quality issues, чинить сбои, документировать изменения. [splunk](https://www.splunk.com/en_us/blog/learn/data-engineer-role-responsibilities.html)
+### Кастомизация источников
 
-Теперь раскладываем это по пяти признакам: [indeed](https://www.indeed.com/q-etl-data-engineer-jobs.html)
-- Объект работы: raw data, feeds, databases, APIs. [splunk](https://www.splunk.com/en_us/blog/learn/data-engineer-role-responsibilities.html)
-- Действия: ingest, transform, validate, orchestrate, monitor, troubleshoot. [coursera](https://www.coursera.org/articles/what-does-a-data-engineer-do-and-how-do-i-become-one)
-- Артефакты: pipeline, table, dataset, alert, documentation. [indeed](https://www.indeed.com/q-etl-data-engineer-jobs.html)
-- Качество: reliability, consistency, security, efficiency, integrity. [betterteam](https://www.betterteam.com/data-engineer-job-description)
-- Требуемые способности: SQL, data modeling, ETL/ELT, scripting, monitoring, debugging. [resources.workable](https://resources.workable.com/data-engineer-job-description)
+```python
+# Только академические источники
+source_specs = [
+    SourceSpec('semantic_scholar', 'computer science education curriculum', limit=30),
+    SourceSpec('web_search', 'CS degree curriculum university', limit=20),
+]
 
-## Валидация как в ML
+# Исключение социальных сетей
+source_specs = create_source_specs_for_role("Software Architect")
+source_specs = [s for s in source_specs if s.source_type not in ['telegram', 'linkedin']]
+```
 
-Здесь лучше разделить две вещи. Есть качество extractor-а, и оно меряется на размеченных benchmark-наборах вроде SkillSpan и Green Benchmark обычными ML-метриками — precision, recall, F1. А есть качество самого occupational profile, и его надо мерить не похожестью на датасет, а готовностью к curriculum design по всем фронтам. [esco.ec.europa](https://esco.ec.europa.eu/en/about-esco/publications/publication/skills-occupations-matrix-tables)
+## Мониторинг и отладка
 
-Я бы оставил одну верхнюю метрику — **Curriculum Readiness Score**. Она считается из четырех объективных блоков:
-- Extractor accuracy: F1 на SkillSpan и Green Benchmark, чтобы понять, можно ли вообще доверять автоматическому извлечению skill/entity spans. [eprints.whiterose.ac](https://eprints.whiterose.ac.uk/id/eprint/208054/)
-- Canonical coverage: доля task/skill/quality элементов профиля, которые маппятся в O*NET и ESCO без ручных “ну примерно похоже”. [esco.ec.europa](https://esco.ec.europa.eu/system/files/2023-04/en_ESCO%20Skill-Occupation%20Matrix%20Tables%20Technical%20Report.pdf)
-- Market stability: насколько профиль устойчив на реальном корпусе вакансий; если при bootstrap-подвыборках top tasks постоянно скачут, профиль сырой. [huggingface](https://huggingface.co/datasets/jacob-hugging-face/job-descriptions)
-- Structural completeness: доля tasks, у которых одновременно есть объект работы, output, quality criterion и required capability; именно этот блок отвечает за пригодность для сборки образовательной программы. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
+### Логирование
 
 Это уже очень похоже на нормальную ML-валидацию, просто target здесь другой. Вы валидируете не “угадай лейбл”, а “достаточно ли структурированной правды в профиле, чтобы из него строить learning outcomes, modules, assessments и prerequisite graph”. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/167034859/3714e213-ea89-4b44-a025-009a9107505a/Shablon-otcheta-NIR-2.md)
 
@@ -251,5 +252,6 @@ CRS = 0.35 \cdot SC + 0.25 \cdot CC + 0.20 \cdot MS + 0.20 \cdot EC
 
 
 
-#   D i p l o m a  
+#   D i p l o m a 
+ 
  

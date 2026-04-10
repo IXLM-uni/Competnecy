@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "uc": "UC-TGSTAT-1",
+  "output_dir": "/home/alexander/Projects/Competnecy/Explore/TGStat/output",
+  "json_output": "/home/alexander/Projects/Competnecy/Explore/TGStat/output/vacancy_channels.json",
+  "csv_output": "/home/alexander/Projects/Competnecy/Explore/TGStat/output/vacancy_channels.csv",
+  "input_vacancies_html": "/home/alexander/Projects/Competnecy/Explore/TGStat/info/Vacancies.html",
+  "input_chats_html": "/home/alexander/Projects/Competnecy/Explore/TGStat/info/Vacancies_chats.html"
+}

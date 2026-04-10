@@ -1,0 +1,54 @@
+# Dev-конфигурация SearXNG для Competency Pipeline.
+# Отключаем limiter/bot-blocking, включаем JSON format.
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "Competency SearXNG"
+
+search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "ru-RU"
+  formats:
+    - html
+    - json
+
+server:
+  bind_address: "0.0.0.0"
+  port: 8080
+  secret_key: "competency-dev-searxng-secret-key-2026"
+  base_url: "http://localhost:8888/"
+  image_proxy: false
+  limiter: false
+  public_instance: false
+
+outgoing:
+  request_timeout: 5.0
+  max_request_timeout: 10.0
+
+redis:
+  url: false
+
+ui:
+  static_use_hash: true
+
+engines:
+  - name: brave
+    disabled: false
+    timeout: 5.0
+    suspended_times: 0
+  - name: duckduckgo
+    disabled: false
+    timeout: 5.0
+  - name: google
+    disabled: true
+  - name: startpage
+    disabled: true
+  - name: mojeek
+    disabled: false
+    timeout: 5.0
+  - name: qwant
+    disabled: false
+    timeout: 5.0

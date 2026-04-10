@@ -1,0 +1,3958 @@
+{
+  "collection": "tg_vacancy_channels",
+  "total_channels": 564,
+  "ok_channels": 520,
+  "failed_channels": 44,
+  "total_messages_indexed": 50533,
+  "created_at": "2026-04-09T15:29:04.761509+00:00",
+  "channels": [
+    {
+      "username": "theyseeku",
+      "name": "Finder.work: работа и вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hmoffice",
+      "name": "ХОУМ • Удалённая работа • Фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "BusinesProjects",
+      "name": "Бизнес Проект",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vacanciesbest",
+      "name": "Лучшие вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Founder_Startup",
+      "name": "Фаундер | Бизнес и стартапы",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "careerspace",
+      "name": "careerspace",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "careersber",
+      "name": "Карьера в Сбере!",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "horseatwork",
+      "name": "КОНЬ НА РАБОТЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "zapwork",
+      "name": "Удалёнщики | удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "BusinessAtmosphere",
+      "name": "Бизнес Атмосфера",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "evacuatejobs",
+      "name": "Remocate: релокация, удалёнка, работа и вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "normrabota",
+      "name": "Норм работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "budujobs",
+      "name": "БУДУ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hh_ru_official",
+      "name": "hh.ru",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_finde",
+      "name": "Work | Диджитал удаленные вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "dddwork",
+      "name": "Работа в медиа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "dnative_job",
+      "name": "Вакансии SMM и Digital",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workk_on",
+      "name": "WORK ON",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "it_vakansii_jobs",
+      "name": "СЕТИ — IT & Digital вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "designhunters",
+      "name": "Design Hunters",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rueventjob",
+      "name": "Удаленка - вся творческая работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobforjunior",
+      "name": "Job for Junior",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "tbank_team",
+      "name": "Т-Банк: работа с клиентами",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "morejobs",
+      "name": "Больше джобсов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "worklis",
+      "name": "worklis | Ежедневная подработка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "zdemcv",
+      "name": "Ждём резюме l Лайфхакер",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mos_rabota777",
+      "name": "Работа в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "alfadigital_jobs",
+      "name": "Alfa Digital",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "young_june",
+      "name": "Young & Junior - вакансии IT",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "naudalenkebro",
+      "name": "Удаленка 2.0 | Finder.work",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "edujobs",
+      "name": "Вакансии в образовании",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workinart",
+      "name": "[WORK IN ART] Работа в сфере искусства",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "forproducts",
+      "name": "Job for Products and Projects",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workoo",
+      "name": "Ворку | Подработка удаленно",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelancce",
+      "name": "ФРИЛАНС | ВАКАНСИИ | УДАЛЕНКА",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "fashionfaculty",
+      "name": "Вакансии. «Модный факультет»",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "marketing_jobs",
+      "name": "🎯 marketing jobs — вакансии для маркетологов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "designbirzha",
+      "name": "Дизайн-биржа 💵",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "distantsiya",
+      "name": "Дистанция",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "vdhl_good",
+      "name": "ВДХЛ - Вакансии для хороших людей",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "yojob",
+      "name": "Dream Job - Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotav_tomsk",
+      "name": "Работа и вакансии в Томске",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "udafrii",
+      "name": "Удалённо - Работа и вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Remoteit",
+      "name": "Remote IT (Inflow)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "geekjobs",
+      "name": "Job in IT&Digital",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "polyaluzjob",
+      "name": "ФРИЛАНСИКИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobpower",
+      "name": "Jobpower – креативные вакансии, работа в творческих сферах",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "BROOTTO_Jobs",
+      "name": "Работа в Израиле",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "gamedevjob",
+      "name": "Работа в геймдеве 🍖",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Well_paid_Job",
+      "name": "Вакансии с зп выше 50 тысяч",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "devjobs",
+      "name": "Game Development Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "talentedpeoples",
+      "name": "Работа талантам + удаленка и фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "t_crew",
+      "name": "T-Crew",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "GetClient",
+      "name": "GetClient | Фриланс вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "perezvonyu",
+      "name": "Мы вам перезвоним",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rekamore_su",
+      "name": "Вакансии для моряков",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "designwork_vacansii",
+      "name": "ВАКАНСИИ ДЛЯ ДИЗАЙНЕРА | РАБОТА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vacancysmm",
+      "name": "SMM работа, вакансии, фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "frilancekomfort",
+      "name": "Работа в комфорте🧘‍♀",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_from_lina",
+      "name": "фриланс | удаленка | онлайн вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "proffreelancee",
+      "name": "НАСТОЯЩИЙ ФРИЛАНС | Удаленная Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "foranalysts",
+      "name": "Job for Analysts & Data Scientists",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Work4writers",
+      "name": "Work for writers",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ya_jobs",
+      "name": "Яндекс нанимает | Вакансии для разработчиков",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "self_ma",
+      "name": "Копирайтер, редактор — удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "digital_rabota",
+      "name": "Я работаю в digital, детка 🚀",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hr_affiliate",
+      "name": "CPA HUNTER | Вакансии арбитража трафика",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forchiefs",
+      "name": "Job for Chiefs (TOP vacancies)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "textodromo",
+      "name": "Текстодром: копирайтер, переводчик, редактор, журналист, сммщик и пиарщик, UX-писатель",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "sci_career",
+      "name": "Sci_Career",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "sova_freelance",
+      "name": "СОВА на ФРИЛАНСЕ 🦉",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "product_jobs",
+      "name": "Вакансии для продактов и проджектов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "digital_hr",
+      "name": "DigitalHR (ДиджиталлЭйчАр): работа | вакансии | рекрутинг | стартапы",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RestorHoreca",
+      "name": "Работа в Restor Horeca.ru",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mtsfintechjobs",
+      "name": "MTS Fintech IT&Digital Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "youritjob",
+      "name": "IT Работа: Сербия и удаленка Lenkep 🔥",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "juno_jobs",
+      "name": "junojobs → стажировки в IT",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_editor",
+      "name": "Работа с текстами — вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mediajobs_ru",
+      "name": "mediajobs | вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vakansii_it",
+      "name": "Вакансии айти IT 💻",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "spbrabota",
+      "name": "Работа в СПб | Санкт-Петербурге",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workzilla_vacancies",
+      "name": "Вакансии Workzilla — Удаленная работа | Фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "motionhunter",
+      "name": "Motion designer hunter",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "grinternru",
+      "name": "Grintern: стажировки в digital и медиа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "diworkru",
+      "name": "DIwork | удаленная работа, фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "careerfedoroff",
+      "name": "Fedoroff | Вакансии для ТОП | Помощь в трудоустройстве.",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "remotejun",
+      "name": "Remote Junior (INFLOW)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "razoomjobs",
+      "name": "RazoomJobs | Вакансии – EdTech, International",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "finexecutive",
+      "name": "FinExecutive #1 in finance jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "astya_r",
+      "name": "ПОМОГАТОР | ФРИЛАНС | ВАКАНСИИ | УДАЛЕНКА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "FreelanceBay",
+      "name": "Бухта Фриланса",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "loomsu",
+      "name": "Loom - Удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "frilans_na_legke",
+      "name": "ФРИЛАНС НАЛЕГКЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "theypaywell",
+      "name": "Вакансии с ЗП выше 100 тысяч",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "bbe_jobs",
+      "name": "Точка входа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "normremote",
+      "name": "Норм удалёнка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "pratsa_vakansiig",
+      "name": "Работа в Гродно",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "linguohunter",
+      "name": "LinguoHunter | Вакансии для переводчиков",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_webdevelopment",
+      "name": "Web-Development Job Offers",
+      "messages_found": 24,
+      "messages_indexed": 24,
+      "status": "ok"
+    },
+    {
+      "username": "practicum_experts",
+      "name": "+1 в команду Яндекс Практикума",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "seohr",
+      "name": "SEO HR, digital-вакансии, офис и удалёнка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "pratsa_vakansiim",
+      "name": "Работа в Могилеве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "avito_jobs",
+      "name": "Авито Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Arbitrazh_vakansii_rabota",
+      "name": "Арбитраж. Все вакансии в одном месте. Lenkep",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forallmedia",
+      "name": "Job for Media & Content",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "MPmanagers",
+      "name": "Менеджеры маркетплейсов | Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_v_gamedeve",
+      "name": "Работа в геймдеве (вакансии)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_python",
+      "name": "Python Job | Вакансии | Стажировки",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hrhubvacancy",
+      "name": "HR[хаб]вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "fordesigner",
+      "name": "Job for Designers",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "uvetrovoi",
+      "name": "ФРИЛАНС",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "smmlancer",
+      "name": "SMMLANCER - работа в соц.сетях!",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "toplevel_job",
+      "name": "TOP LEVEL JOB [топ вакансии для руководителей]",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "forallqa",
+      "name": "Job for QA",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Ludivkulture",
+      "name": "Люди в Культуре | Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "remotegeekjob",
+      "name": "RemoteGeekjob",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workvc",
+      "name": "джоб оффер | Подработка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "datasciencejobs",
+      "name": "Data Science Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "digital_jobster",
+      "name": "Джобстер Digital | Маркетинг | Вакансии и резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "devops_jobs_feed",
+      "name": "Devops Jobs — вакансии и резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "joboneC",
+      "name": "Р1: Premium. Вакансии 1С для Синьоров",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Getitrussia",
+      "name": "Get IT",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rdm_channel",
+      "name": "Работа для музыкантов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_360",
+      "name": "БИРЖА ТРУДА | вакансии резюме - удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vakansi_rus",
+      "name": "Creative Freelancer",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotakras123",
+      "name": "Работа в Краснодаре",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workk_onstream",
+      "name": "WORK ON | STREAM",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forallmarketing",
+      "name": "Job for Marketing",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_illustrator",
+      "name": "Ищу ИЛЛЮСТРАТОРА фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota38irk",
+      "name": "Работа 38 | Вакансии и резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ugskpm",
+      "name": "Работа в Правительстве Москвы",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "cryptoheadhunter",
+      "name": "Крипто HeadHunter | WEB 3 Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "MyGigOfficial",
+      "name": "MyGig — работа и подработка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotavispanii",
+      "name": "РАБОТА В ИСПАНИИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workfortop",
+      "name": "Work For TOP Вакансии для руководителей",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vacanciesrus",
+      "name": "Digital вакансии в Telegram",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "myshift_podrabotka",
+      "name": "Моя смена - подработка рядом с домом",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "trudoxrana",
+      "name": "Работа Охрана",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "digitaltender",
+      "name": "DIGITAL Tender / freelance / фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "dsgnworkers",
+      "name": "Дизайн работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "SportHunter",
+      "name": "SportHunter. Работа в спорте",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotauvalery",
+      "name": "Вакансии у Валеры",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "designer_work",
+      "name": "Design WORK",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "msk_rabota",
+      "name": "Работа в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "horecahr",
+      "name": "HRC HR",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota154NsK",
+      "name": "Грузчики Новосибирск Работа Нск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "HRorHR",
+      "name": "эйчарли | HR вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "spb_rabota",
+      "name": "Работа в Санкт-Петербурге | СПб",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "expomodels",
+      "name": "Работа для хостес в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "aestheticsoflawjob",
+      "name": "Вакансии для юристов (стажировки, госслужба)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "devs_it",
+      "name": "IT Jobs | Вакансии в IT",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "chooseajob",
+      "name": "Выбери Работу: работа - вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_react",
+      "name": "React Job | JavaScript | Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_copywriters",
+      "name": "Работа для копирайтеров и редакторов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "seamenjob",
+      "name": "𝐉𝐎𝐁 𝐀𝐓 𝐒𝐄𝐀",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "megafonjobs",
+      "name": "Карьера в МегаФоне",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Perforum_jobs",
+      "name": "Perforum jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "progjob",
+      "name": "Работа для программистов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vacancy_cs",
+      "name": "ФКН: Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RestoranHR",
+      "name": "Resto HR - работа в ресторанах, повара, вакансии общепит, Москва",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "nevolk_rabota",
+      "name": "не волк",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forhr",
+      "name": "Job for HR (IT & Digital)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "projects_jobs_feed",
+      "name": "Management Jobs — вакансии и резюме",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "python_djangojobs",
+      "name": "Python Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_javadevs",
+      "name": "Java Job | Вакансии | Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "coppvakansii",
+      "name": "Вакансии от ЦОПП Московской области",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "personnelnsk",
+      "name": "Ежедневная подработка|Новосибирск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "allcrewing",
+      "name": "ALL CREW LLC/ ООО АЛЛ КРЮ, вакансии, крюинг, работа в море",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobfortm",
+      "name": "Job for IT-TOP (Technical Managers)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workenot",
+      "name": "Работа от енота",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_frontend",
+      "name": "Front-end Job Offers",
+      "messages_found": 23,
+      "messages_indexed": 23,
+      "status": "ok"
+    },
+    {
+      "username": "javadevjob",
+      "name": "Java jobs — вакансии для java-разработчиков",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Rabota_vakansii_vahtovik",
+      "name": "Вахтовик • Работа вахтой",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotanornickel",
+      "name": "Работа в «Норникеле»",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "kadrof_work",
+      "name": "Вакансии для фрилансеров, удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workfreelancer",
+      "name": "Фрилансер: вакансии на удаленке",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vacancyCRC",
+      "name": "Вакансии от CRC",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_hr",
+      "name": "Удаленная работа для HR",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vakanser_freelancer",
+      "name": "Вакансер — Фриланс | Freelance подработка | Удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mskrabota",
+      "name": "Работа в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_freelancee",
+      "name": "Удаленка. Вакансии и резюме Маркетинг, SMM, Digital - все для онлайна",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "pythonrabota",
+      "name": "Python работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "aviahh",
+      "name": "Работа в авиации",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobforpr",
+      "name": "Job for PR и SMM",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "oppo4you",
+      "name": "Opportunity for you by FutureToday.KZ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Inwork",
+      "name": "Work in",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forgamedev",
+      "name": "Job for Gamedev",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "affy_hr",
+      "name": "affy | CPA HR | Арбитраж Трафика Вакансии",
+      "messages_found": 78,
+      "messages_indexed": 78,
+      "status": "ok"
+    },
+    {
+      "username": "vacanci",
+      "name": "Вакансии&Резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabovnet",
+      "name": "RabovNet - удаленка, вакансии, работа, фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "delaemknigi",
+      "name": "Делаем книги",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota2k",
+      "name": "Работа 2К : Свежие вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobosphere",
+      "name": "JOBOSPHERE | ВАКАНСИИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_kazan_vzialiru",
+      "name": "Взяли.ру Работа Казань",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "halyk_jumys",
+      "name": "Halyk Jumys",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "personnelnskchas",
+      "name": "Часовые заявки|Новосибирск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "godevjob",
+      "name": "Go jobs — вакансии по Go",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vakanser_digital_smm",
+      "name": "Работа в Digital & SMM | Фриланс и работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "JScript_jobs",
+      "name": "JavaScript Job | Вакансии | Стажировки",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_backend",
+      "name": "Backend Job Offers",
+      "messages_found": 22,
+      "messages_indexed": 22,
+      "status": "ok"
+    },
+    {
+      "username": "studentsuper",
+      "name": "SuperJob Старт / Работа для студентов и молодых специалистов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "copy_go",
+      "name": "Копирайтинг 2.0 | Вакансии, работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_football",
+      "name": "Работа в футболе",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RabotaRegionIrkutsk",
+      "name": "Работа в Иркутской области и вахтой в Сибири.",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "sport_rabota",
+      "name": "Работа в спорте",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "datajobschannel",
+      "name": "Data jobs feed",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "frontendInterview",
+      "name": "Frontend Interview - собеседования по Javascript / Html / Css",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "buhjob",
+      "name": "Бухджоб — вакансии для бухгалтеров",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "selectelcareers",
+      "name": "Selectel Team",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workle_ru",
+      "name": "Workle Pro",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ru_pythonjobs",
+      "name": "Вакансии для Python-разработчиков / Python Jobs",
+      "messages_found": 3,
+      "messages_indexed": 3,
+      "status": "ok"
+    },
+    {
+      "username": "workayte",
+      "name": "Работа в ИТ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RuSecJobs",
+      "name": "RuSecJobs Channel",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workremotejob",
+      "name": "Вакансии | удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workindesign",
+      "name": "Work for Designers",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hr_itwork",
+      "name": "Ит Вакансии / Работа программиста",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "careercentreitmo",
+      "name": "Центр карьеры ИТМО",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotka_zdes",
+      "name": "Работка | Вакансии | Удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobkawork",
+      "name": "Jobka: Работа - вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_webdesign",
+      "name": "Web Design Job Offers",
+      "messages_found": 18,
+      "messages_indexed": 18,
+      "status": "ok"
+    },
+    {
+      "username": "work_for_everyone",
+      "name": "Работа для всех! |Вакансии, работа, фриланс, удаленная работа, работа вахтой",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "csharpdevjob",
+      "name": "C# jobs — вакансии по C#, .NET, Unity",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jkazan",
+      "name": "Шабашка / Работа в Казани",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "gorod_masterov_yakutsk",
+      "name": "«Город Мастеров» Якутск",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "mgimocareer",
+      "name": "2b.mgimo.career",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotasakhalin",
+      "name": "РАБОТА САХАЛИН",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelancefam",
+      "name": "ЛОВИ ОФФЕР!",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "evrazia_govorit",
+      "name": "SkillBridge — Евразия говорит!",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "CREW_ARIA",
+      "name": "CREW ARIA | JOB AT SEA",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "it_vak",
+      "name": "IT - Вакансии I Удаленка/Офис",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mskstaff",
+      "name": "MSKstaff Официанты Москвы",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobskolkovo",
+      "name": "Работа в Сколково",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_datascience",
+      "name": "Data Science & Analytics Job Offers",
+      "messages_found": 16,
+      "messages_indexed": 16,
+      "status": "ok"
+    },
+    {
+      "username": "forumdentalassistant",
+      "name": "Форум Ассистентов Стоматолога ⚡",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "runello_rus_digitalmarketing",
+      "name": "Digital Marketing Job Offers",
+      "messages_found": 20,
+      "messages_indexed": 20,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_contentmanagement",
+      "name": "Content Management & Writing Job Offers",
+      "messages_found": 20,
+      "messages_indexed": 20,
+      "status": "ok"
+    },
+    {
+      "username": "sochi_podrabotka",
+      "name": "ПОДРАБОТКА | СОЧИ | АДЛЕР | КП",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "AcademyQA",
+      "name": "AcademyQA — От теории к практике | Образование & Карьера",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "prwork",
+      "name": "PR-работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "magadan_vacancies",
+      "name": "Ваⷨкⷶаⷢнⷶсⷣиⷶиⷩ",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "Visionisland",
+      "name": "Vision Island. Вакансии для дизайнеров",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabochie_ufa",
+      "name": "РАБОЧИЕ УФА +79373033037",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "flexible_100K",
+      "name": "ГИБКАЯ РАБОТА | Эксперты 100К+",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_web3",
+      "name": "Web 3.0 Job | Крипто Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "goodpeople_pro",
+      "name": "Вакансии для хороших людей в Петербурге",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "help_seafarers",
+      "name": "OFFSHORE JOB / МОРЯКИ / РАБОТА / CV РАССЫЛКА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "klgrabota",
+      "name": "Калуга Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "blastim",
+      "name": "Бластим: курсы и работа в биотехе",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "HRTech_Jobs",
+      "name": "HR-Tech.Карьера 🔥",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "aurajob",
+      "name": "Aura Job | Фриланс и Удаленка | Вакансии | Подработка",
+      "messages_found": 73,
+      "messages_indexed": 73,
+      "status": "ok"
+    },
+    {
+      "username": "tavridahh",
+      "name": "ТАВРИДА.ВАКАНСИИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "allgigs",
+      "name": "Mellow || Зарубежные фриланс-заказы каждый день",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hrcampus",
+      "name": "HR Campus 🚀",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotavsochi_t",
+      "name": "Работа в Сочи",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "pydevjob",
+      "name": "Python jobs — вакансии по питону, Django, Flask",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "lanit_in_search",
+      "name": "ЛАНИТ ищет",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ue_pub",
+      "name": "Unreal Engine Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "theyseeku_it",
+      "name": "Удаленка — IT и Digital",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "KitHR_Official",
+      "name": "Подбор VIP ассистентов / помощников KitHR",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "dartlang_jobs",
+      "name": "Dart Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_stroika_stavropol",
+      "name": "Стройка | Вакансии/Резюме | Ставрополь",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "jsdevjob",
+      "name": "Javascript jobs — вакансии по фронтенду, джаваскрипт, React, Angular, Vue",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "it_vac",
+      "name": "IT Jobs | вакансии, фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "runello_rus_mobileappdevelopment",
+      "name": "Mobile App Development Job Offers",
+      "messages_found": 16,
+      "messages_indexed": 16,
+      "status": "ok"
+    },
+    {
+      "username": "crewhunterma",
+      "name": "CREW HUNTER",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "innopolis_job",
+      "name": "Вакансии города Иннополис",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "smm_leads",
+      "name": "SMM LEADS",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "partnerkin_job",
+      "name": "Вакансии: Арбитраж трафика, SEO, Affiliate [Партнеркин]",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotanizhnekamsk",
+      "name": "Работа Нижнекамск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workk_onleads",
+      "name": "WORK ON | LEADS",
+      "messages_found": 14,
+      "messages_indexed": 14,
+      "status": "ok"
+    },
+    {
+      "username": "pharmed_recruitment",
+      "name": "💉Фарма&Медикал Рекрутмент / Вакансии в Фарме, Работа в Фарме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "promorabota",
+      "name": "Подработка в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "aviacareer_official",
+      "name": "AviaCareer | Работа в авиации",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelancer_group_design",
+      "name": "ИЩУ ДИЗАЙНЕРА ХУДОЖНИКА ИЛЛЮСТРАТОРА МОНТАЖЁРА АНИМАТОРА МОУШЕН ДИЗАЙНЕРА САЙТЫ UI/UX FREELANCER ARTISTS ILLUSTRATORS DESIGNERS",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "reklamodromo",
+      "name": "Рекламодром: таргетолог, директолог, контекстолог, настройка рекламы ВК и Телеграм",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "little_job_VDK",
+      "name": "Работа Владивосток-Артем",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hiddengurus",
+      "name": "Hidden Gurus - Remote IT",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "itjobs_nocode",
+      "name": "Вайб-кодинг | No Code",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobsRT",
+      "name": "Джобстудей",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_go",
+      "name": "Вакансии 🤟🏻 Маркетинг, Продажи, SMM | Работа GO - разместить вакансию и резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hrterra",
+      "name": "HR | TERRA Работа, Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelancesmm",
+      "name": "Самозанятый - вакансии | Фрилансеры",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "krasnodarrabotay",
+      "name": "Работа Краснодар",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RabotaRestorHoreca",
+      "name": "Работа в Restor MoskoW ®️",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "theypaygood",
+      "name": "Вакансии с ЗП выше 50 тысяч",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "designizer",
+      "name": "Вакансии для дизайнеров",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rcm_job",
+      "name": "АРКМ. Вакансии и резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "tpeople",
+      "name": "Tpeople - your finance career",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobs_marketplace",
+      "name": "Вакансии для менеджеров маркетплейса | Удаленная работа Wildberries Ozon",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vakantno",
+      "name": "Вакантно. Работа в Москве для домашнего персонала. Вакансии для нянь, домработниц, водителей, поваров, сиделок, семейных пар",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "animator_jobs",
+      "name": "CG Animator Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "bankman_20",
+      "name": "BANKMAN // Вакансии в банках",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobkzn",
+      "name": "Работа в Казани",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rizk_ot_allaha",
+      "name": "Работа الحلال Татарстан",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "searcher_freelance",
+      "name": "СЁРЧЕР | ВАКАНСИИ | УДАЛЕНКА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "testerrjob",
+      "name": "Вакансии по QA — тестирование, manual testing, autotests",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "HR_Analytics_Jobs",
+      "name": "Вакансии в HR-Аналитике",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hrnewsworkle",
+      "name": "Подбор персонала Workle Pro / Работа онлайн / HR / Арбитраж трафика (CPA)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "facultyhr",
+      "name": "Факультет | Работа в спорте",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Copy_Digital",
+      "name": "Копирайтер, редактор - вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "stoodent_moskva",
+      "name": "Подработка в Москве 🔥",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "FMCGvacancy",
+      "name": "FMCG вакансии от Маши Неуважаевой",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "armyanevmoskve",
+      "name": "Армяне в Москве и в России работа ,вакансии,реклама🇦🇲🇷🇺",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "whateverseen",
+      "name": "на виду / seen",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "GeoJob",
+      "name": "Geojob - Геодезисты. Работа и вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "spb_rabota78",
+      "name": "Работа СПб в Санкт-Петербурге",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_looking",
+      "name": "Ищу работу | Диджитал",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freegolup",
+      "name": "Голубь на Фрилансе. Удаленная работа. Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Find_Barista",
+      "name": "Требуется Бариста. Кофе. Barista",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "pythonpythonjobs",
+      "name": "Python — вакансии и стажировки",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "gossluzba03",
+      "name": "Госслужба03",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "iRecommendWork",
+      "name": "iRecommendWork - Работа по рекомендации 👍",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rdw_spb",
+      "name": "Работа для Вас в Санкт-Петербурге | СПб",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotaembedded",
+      "name": "Work Embedded",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forallsales",
+      "name": "Job for Sales & BizDev",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobs_vacancy_cv",
+      "name": "Вакансии и резюме HR-специалистов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workk_onhr",
+      "name": "WORK ON | HR",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "cppdevjob",
+      "name": "Вакансии по C++ — си-плюс-плюс, cpp, Си, C, STL, Boost",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "amurpoint",
+      "name": "amurpoint",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobs_foxford",
+      "name": "Фоксфорд | Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "podbor_assistant",
+      "name": "Ассистент, которого хотят",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "personalrabotavrestoranax",
+      "name": "Работа в ресторанах",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "prom_alp_baza",
+      "name": "ПрофАльпБаза ПАБ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workcatcher",
+      "name": "Ловец вакансий",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "certwork",
+      "name": "CertWork - вакансии фриланс | удаленная работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Rostelecom_career",
+      "name": "Карьера в Ростелекоме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotavra",
+      "name": "Работа в Республике Алтай",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "tut_rabota_sochi",
+      "name": "Работа в Сочи 🏖️🏂",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "aitujobs",
+      "name": "Daily Jobs IT KZ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "phpdevjob",
+      "name": "PHP jobs — вакансии по PHP, Symfony, Laravel",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "proocareer",
+      "name": "PRO.Карьера",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vrabote_me",
+      "name": "ВРаботе | Стажировки и вакансии для студентов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Remoteria",
+      "name": "Remoteria┃Вакансии от 100 тыс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "alljvmjobs",
+      "name": "JVM Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RabotaSakhcom",
+      "name": "Работа Сахалин - Вакансии (Сахалин, Южно-Сахалинск)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "kontur_live",
+      "name": "Работа и жизнь в Контуре",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotakastingi",
+      "name": "Event ,обьявление|Москва",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vahtovikru",
+      "name": "РАБОТА ВАХТОЙ - ВАКАНСИИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "urbanjob",
+      "name": "Вакансии в территориальном развитии / Urban Job",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "promopoiskspb",
+      "name": "Интересная работа Петербурга",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "biheadhunter",
+      "name": "Business Intelligence HeadHunter",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "editcghunter",
+      "name": "➤ Job List | 🪪",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "fintech_vacancy",
+      "name": "Вакансии в Финтех",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rudakovahr",
+      "name": "🔎 Вакансии от Хрипченко Ани (ex-Рудакова)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "podrabotkiisrael",
+      "name": "РАБОТА И ПОДРАБОТКИ В ИЗРАИЛЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "logika_career",
+      "name": "Логика карьеры",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vakansiiKaliningrad",
+      "name": "Работа в Калининграде",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workmarketingg",
+      "name": "Вакансии в Digital | работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "board_axolotl",
+      "name": "Аксолотль — Вакансии на фрилансе",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "headzio",
+      "name": "Headz",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mobiledevjob",
+      "name": "Mobile jobs — вакансии для мобильных разработчиков",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "tut_rabota_kbr",
+      "name": "РАБОТА ВАКАНСИИ НАЛЬЧИК КБР",
+      "messages_found": 83,
+      "messages_indexed": 83,
+      "status": "ok"
+    },
+    {
+      "username": "mirfri",
+      "name": "Мир Фриланса | Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "zapwork1",
+      "name": "Удалёнщики",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotabroadcast",
+      "name": "Работа на трансляциях",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotamigrantam",
+      "name": "Migranto.ru: Работа для мигрантов",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "managwork",
+      "name": "Вакансии для менеджеров | фриланс, работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forproducer",
+      "name": "Job for Producer",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "shabaskaperm",
+      "name": "Шабашка Пермь",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RabotaPoSosedstvu",
+      "name": "Вакансии, Услуги и Соискатели в Путилково",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotavobrazovanii",
+      "name": "Вакансии в образовании Якутии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "crewing_agency",
+      "name": "Atlantic Staff Crewing #работавморе #вакансии #крюинг #рыбаки",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RabotaUdalenka",
+      "name": "Работа из дома. Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mphvostok",
+      "name": "МПШ Восток | MPH Vostok | Вакансии промышленности и строительства",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Esportjobs",
+      "name": "Работа в киберспорте",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "DotNetRuJobsFeed",
+      "name": "Вакансии .NET (канал)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "WorkleBank",
+      "name": "Банковское дело Workle Pro / Работа онлайн / Финансы / Арбитраж трафика (CPA)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "cfo_ifrs",
+      "name": "Вакансии в CFO/IFRS",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "IT_jobs_apply",
+      "name": "IT / Tech jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hrzarplata",
+      "name": "hr.zarplata.ru",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "shum_i_brand",
+      "name": "Шум и Бренд",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "appsec_job",
+      "name": "AppSec & DevSecOps Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "fordevops",
+      "name": "Job for Sysadmin & DevOps",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "moscowworkvsem",
+      "name": "Работа Москва 💵",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "busines_startap",
+      "name": "УДАЛЁНКА | ФРИЛАНС | ВАКАНСИИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "personnelnskd",
+      "name": "Девушки подработка|Новосибирск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_v_pavlodare",
+      "name": "Работа в Павлодаре",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelance_dovgal",
+      "name": "Вакансии. Удаленная работа, фриланс. Канал Алёны Довгаль",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "sysadmin_jobs",
+      "name": "sysadmin_jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "dorstroy36",
+      "name": "ДорСтрой-36 работа для самосвалов и спецтехники",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forcsharp",
+      "name": "Job for C#, .NET",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_vsem_ufa",
+      "name": "РАБОЧИЙ РЕЗЕРВ УФА /РАБОЧИЕ / ГРУЗЧИКИ / ПОДСОБНИКИ / РАБОТА / ПОДРАБОТКА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "krasnoyarskaya_rabota",
+      "name": "Красноярская Работа | Вакансии Красноярск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotabur",
+      "name": "Вакансии БУРЯТИИ + на Вахту по РФ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "MaryBonnee",
+      "name": "Вакансии КА Мэри Бонн",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "golangjob",
+      "name": "Golang Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ibscareer",
+      "name": "Вакансии и карьера в IBS",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rust_jobs_feed",
+      "name": "Rust Jobs - лента вакансий и резюме",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "lab_vacancies",
+      "name": "Лаборатория вакансий в образовании",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "global_ux_ui_jobs",
+      "name": "Design Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ramenskoe_job",
+      "name": "Раменское Ярмарка Вакансий",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forgoandrust",
+      "name": "Job for Go, Rust Developers",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_reka",
+      "name": "Работа на реке / Типичный речник",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rujobinfood",
+      "name": "Общепит - работа есть!",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "you_jod",
+      "name": "Работай в авиации ✈️",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "dixylike",
+      "name": "Работа в Дикси",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "samsjob",
+      "name": "ВАКАНСИИ ОТ СЭМА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "porarabota",
+      "name": "ПОРА работать в Арктике",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "pkenergiya_vakansii",
+      "name": "Трудоустройство студентов и выпускников ГАПОУ МО «ПК«Энергия»",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_rostove_v",
+      "name": "Шабашка Ростов-на-Дону",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "HR_Atlasmining",
+      "name": "Золотой Ресурс Атласа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "kaliningrad_rabota",
+      "name": "Работа в Калининграде",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobscode_infull",
+      "name": "Jobs Code | In full",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "balletagency",
+      "name": "Ballet Agency / Работа для артистов и учителей в Китае",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota38rus",
+      "name": "Работа Иркутск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "navoijobs",
+      "name": "Работа в Навои",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "stroika05",
+      "name": "🏗 РАБОТА 🇷🇺",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabochie_ufa1",
+      "name": "РАБОТА УФА СПЕЦИАЛИСТЫ ГРУЗЧИКИ РАЗНОРАБОЧИЕ ПОДСОБНИКИ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "nyanidomrabotnicisidelki",
+      "name": "Няни, Домработницы, Сиделки",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "podorogenarabotu",
+      "name": "По Дороге На Работу",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobs_for_products",
+      "name": "Продуктовые вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "forcpp",
+      "name": "Job for C, C++ Developers",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "belhiru",
+      "name": "belhi.ru",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "moworkey",
+      "name": "Mowork - Digital | Media вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hrangels",
+      "name": "HR ANGELS",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "farpostjob",
+      "name": "ФАРПОСТ подработка и удаленная работа Владивосток",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "icefalumnijobs",
+      "name": "ICEF Alumni Jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "sapforfreelancer",
+      "name": "SAP для фрилансеров",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vahta_ohrana",
+      "name": "Работа в ОХРАНЕ | Охранник | Security",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobsit52",
+      "name": "it52.jobs",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobfeeds",
+      "name": "Работница",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "RabotaNsk",
+      "name": "РаботаНск • Работа Новосибирск • cвежие вакансии • 54",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "more_po_koleno_1",
+      "name": "Море По Коліно | Робота для моряків",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "teleworko",
+      "name": "TELEWORK: Удалёнка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "CyberYozh_shop",
+      "name": "app.cyberyozh.com",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "telegawork_org",
+      "name": "TelegaWork | Вакансии & Фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobforphp",
+      "name": "Job for PHP",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Kaluga40Rabota",
+      "name": "КАЛУГА Работа Подработка Калым",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ruki_freelance",
+      "name": "Маркетплейс Lab | Вакансии & Резюме 🛒",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "restovacancy",
+      "name": "Рестовакансии.Москва",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hr_gov_spb",
+      "name": "Работа в Администрации Санкт-Петербурга",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "telesalesservice",
+      "name": "Телесейлз Сервис",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "top_freelance_job_zavod",
+      "name": "ОНЛАЙН - ЗАВОД | ВАКАНСИИ ФРИЛАНС ОНЛАЙН",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "aviapark_careers",
+      "name": "Работа в АВИАПАРКЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Raboota_Chirchika",
+      "name": "РАБОТА В ЧИРЧИКЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_buxg_kadri",
+      "name": "Работа для HR и бухгалтеров в СНГ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "itmoscow",
+      "name": "Job Moscow it (Inflow)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rezume_do_offera",
+      "name": "НАЙДИ РАБОТУ В IT | Советы от рекрутера",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "keystone_vacancies",
+      "name": "Keystone",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "fr_works",
+      "name": "Фриланс Биржа: Работа для каждого",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotasmi",
+      "name": "Работа. Медиа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "eduprof_mos",
+      "name": "Моя профессия",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "stafjet",
+      "name": "Стаффджет РАБОТА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "career_kiu",
+      "name": "Карьера КИУ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Vahta_Rabota1",
+      "name": "Вахтовый метод Вахта Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "asorabota",
+      "name": "ASO работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "direct_kbr",
+      "name": "Директ 24",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "lbalabourexchange",
+      "name": "LBA JOB",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotaphp",
+      "name": "PHP вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_crypto_ru",
+      "name": "Jobs Crypto RU 🚀",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotarestoran",
+      "name": "Кадровое агентство RABOTARESTORAN.RU",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "superjob_ru",
+      "name": "Работа / superjob.ru / Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotavdmd",
+      "name": "Работа в Домодедово/Вакансии в Дмд",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "django_jobs_board",
+      "name": "django_jobs_board",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelansim_ru",
+      "name": "Хабр Фриланс",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "horecarabota",
+      "name": "🔵HoReCa РАБОТА🔵",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "careermsutstankin",
+      "name": "СТАНКИН.КАРЬЕРА",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_bloknot_krasnodar",
+      "name": "Блокнот Работа Краснодар",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "careerinconsulting",
+      "name": "Карьера в консалтинговых фирмах",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "findhookahjob",
+      "name": "Кальянные вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobs_msu",
+      "name": "Вакансии МГУ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobcatcher",
+      "name": "Ловец вакансий 🙌🏻",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_10000000000",
+      "name": "РАБОТА ЕСТЬ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotavpoime",
+      "name": "Вакансии | Павшинская пойма",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "fareastjob",
+      "name": "Жизнь и работа на Дальнем Востоке и в Арктике",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "coffeejob",
+      "name": "КофеРабота. Работа Бариста | Поиск Бариста | Вакансии Бариста",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotaru_pro",
+      "name": "Работа.ру для бизнеса",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "superjob_udalenka",
+      "name": "Работа / Удаленка / Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "TTPUmarketing_hiring",
+      "name": "Маркетинг трудоустройство",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "gazpromvacansii",
+      "name": "Газпром Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hr_nikki",
+      "name": "HR_Nikki",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_nahazabota_vsa_rossia_sng",
+      "name": "Работа вся Россия и СНГ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobtalker",
+      "name": "Есть кто?",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobforarabists",
+      "name": "Job for arabists",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobzstudent",
+      "name": "Подработка для студентов РФ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "trudsafe",
+      "name": "СИБТРУД | Сибирский центр безопасности труда",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "JobsForKM",
+      "name": "Множество вакансий для КМ▪Ася Репрева",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "workredsmm",
+      "name": "Биржа переехала",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "hantim",
+      "name": "Работа в Коломне",
+      "messages_found": 27,
+      "messages_indexed": 27,
+      "status": "ok"
+    },
+    {
+      "username": "jobzakupki",
+      "name": "Работа и Карьера в закупках, снабжении и логистике: Вакансии & Кандидаты",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "haltuuurka",
+      "name": "халтурка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_Ekat",
+      "name": "Работа в Екатеринбурге",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_morozovsk61",
+      "name": "Блокнот Работа Морозовск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_vakansii_belgorod",
+      "name": "Работа. Вакансии Белгорода. Подработка. Поиск сотрудников. Объявления.",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "alterjob",
+      "name": "Вся работа Москвы ( вакансии без MLM)",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rostov_job",
+      "name": "Работа в Ростове-на-Дону | агентство Кадровик",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobs_here",
+      "name": "Работай удаленно",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "antgroup2004",
+      "name": "A.N.T. | вакансии | всё о рынке труда",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "v_moskve_rabota",
+      "name": "РАБОТА В МОСКВЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "vacancy1000kzn",
+      "name": "1000 Вакансий - Казань. Работа",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "sustanabilityjobportal",
+      "name": "Sustainability job portal",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "kzn_reklama",
+      "name": "Казань | работа | вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "art_job_digital",
+      "name": "ART Burn Job",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "mosintern",
+      "name": "ПиС: Практика и стажировка",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_khasavurt",
+      "name": "РАБОТА В ХАСАВЮРТЕ",
+      "messages_found": 1,
+      "messages_indexed": 1,
+      "status": "ok"
+    },
+    {
+      "username": "rabotadagestan",
+      "name": "РАБОТА05",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "orenburg_work",
+      "name": "Работа в Оренбурге",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "javaJobinMoscow",
+      "name": "Вакансии программистов Java в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "oficyanty_na_meropriyatie",
+      "name": "Компания «Официанты на банкет» Заказ официантов на мероприятие, банкет, фуршет",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_foryou",
+      "name": "Работа👨‍🏫/Вакансии📚/Маркетинг",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jobnulsya",
+      "name": "JOBнулся. О работе и карьере. Как есть",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "kras_rabota",
+      "name": "Краснодар. Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "domashniypersonall",
+      "name": "Домашний персонал Москва и МО",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "Work_Moscow_Horeca",
+      "name": "Общепит Москвы",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "eqiva_hr",
+      "name": "Eqiva: резюме и вакансии",
+      "messages_found": 54,
+      "messages_indexed": 54,
+      "status": "ok"
+    },
+    {
+      "username": "gelenjikrabota",
+      "name": "Геленджик. Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job163",
+      "name": "Работа в Самаре",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "schmaltz_v",
+      "name": "Виталий Шмальц",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "freelancework11",
+      "name": "Здоровый старт | ЖКТ и очищение",
+      "messages_found": 37,
+      "messages_indexed": 37,
+      "status": "ok"
+    },
+    {
+      "username": "yaroslavle_work",
+      "name": "Работа в Ярославле",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "teremok_live",
+      "name": "Работа в сети «Теремок» Санкт-Петербург",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_v_digital",
+      "name": "Работа Диджитал Москва",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "obshepit_moskva",
+      "name": "Общепит Вакансия И РЕЗЮМЕ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotaamur",
+      "name": "Работа Благовещенск",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "novostroyelitegroup",
+      "name": "NovostroyEliteGroup",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "CentralAsianPost",
+      "name": "Центральная Азия",
+      "messages_found": 18,
+      "messages_indexed": 18,
+      "status": "ok"
+    },
+    {
+      "username": "remotefreelance",
+      "name": "На Удалёнке",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "work_tula",
+      "name": "Работа в Туле",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabota_vachtoy",
+      "name": "Работа вахтой ХМАО ЯНАО",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "moscouworknews",
+      "name": "Работа в Москве",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "superjob_vahta",
+      "name": "Работа / Вахта / Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "novosibworknews",
+      "name": "Работа в Новосибирске",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "rabotadevushkam_spb",
+      "name": "Работа девушкам Питер",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rostov_work",
+      "name": "Работа в Ростове на Дону",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "jun_and_job",
+      "name": "Джун и Джоб",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "storiessigraa",
+      "name": "ИГРЫ СТОРИС",
+      "messages_found": 52,
+      "messages_indexed": 52,
+      "status": "ok"
+    },
+    {
+      "username": "rabota2upsee",
+      "name": "Туапсе. Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "anapahr",
+      "name": "Анапа. Работа",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "ishustorisy",
+      "name": "Сторисы Ищу тебя в Москве",
+      "messages_found": 10,
+      "messages_indexed": 10,
+      "status": "ok"
+    },
+    {
+      "username": "glamoriTOP",
+      "name": "JOB CV Робота, Вакансії Чернівці",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "kazan_vakansiya",
+      "name": "Казань Вакансии",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "on_a_freelance",
+      "name": "Нейро редакция | контент с помощью AI",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_in_landscape",
+      "name": "Зеленый фриланс/Вакансии в ландшафте",
+      "messages_found": 24,
+      "messages_indexed": 24,
+      "status": "ok"
+    },
+    {
+      "username": "prorab_ru",
+      "name": "ПРОРАБъ",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "job_hunting_msk",
+      "name": "job_hunting_msk_HR",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "sochiprodaj",
+      "name": "Сочи. Работа продавцы",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "udalenshiki_layboard",
+      "name": "LB - на удаленке | Layboard.com",
+      "messages_found": 100,
+      "messages_indexed": 100,
+      "status": "ok"
+    },
+    {
+      "username": "horecarabotasouth",
+      "name": "🔵 HoReCa РАБОТА 🔵 КРАСНОДАРСКИЙ КРАЙ",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "caterekb20",
+      "name": "Два через два | Работа в общепите Екатеринбурга | Вакансии официанты, повара, бармены, хостес, мойщицы",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "Frilanser_100",
+      "name": "Фрилансеры Онлайн. Чат.",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabotatut24",
+      "name": "РАБОТА МОСКВА",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "sibjob",
+      "name": "Иркутск Объявления",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "Freelance_GoUp",
+      "name": "Фриланс | Удаленная Работа",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_vahta_1",
+      "name": "Работа Вахта",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "workhrhr",
+      "name": "Jobs HR",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Ufa_Bashkortostane",
+      "name": "Работа Уфа",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabotav_Barnaule",
+      "name": "Работа в Барнауле",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_moscow_moscow",
+      "name": "Работа в Москве",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_NizhnyNovgorode",
+      "name": "Работа Нижний Новгород",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_cheboksary_cheboksary",
+      "name": "Работа Чебоксары",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Yekaterinburg_rabota",
+      "name": "Работа Екатеринбург",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_sankt_peterburge_1",
+      "name": "Работа в Санкт-Петербурге",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabotav_Arhangelske",
+      "name": "Работа в Архангельске и в Архангельской области",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Bryansk_work",
+      "name": "Работа в Брянске",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "RABOTA_KRASNODAR_KRASNODAR",
+      "name": "Работа в Краснодаре",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Krasnoyarsk_Krasnoyarsk",
+      "name": "Работа Красноярск",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "xMoodyChat",
+      "name": "Моуди | Чат поиска заказчиков и исполнителей",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabotav_Belgorode",
+      "name": "Работа в Белгороде",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Novosibirsk_Novosibirsk",
+      "name": "Работа Новосибирск",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Samara_Samara",
+      "name": "Работа Самара",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabotav_astrahani",
+      "name": "Работа в Астрахани и в Астраханской области",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_tyumen_tyumen",
+      "name": "Работа Тюмень",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Kazan_Kazan",
+      "name": "Работа Казань",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    },
+    {
+      "username": "rabota_Chelyabinsk_Chelyabinsk",
+      "name": "Работа Челябинск",
+      "messages_found": 0,
+      "messages_indexed": 0,
+      "status": "no_messages"
+    }
+  ]
+}

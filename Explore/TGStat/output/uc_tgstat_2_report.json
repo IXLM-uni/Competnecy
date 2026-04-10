@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "uc": "UC-TGSTAT-2",
+  "channels_json": "/home/alexander/Projects/Competnecy/Explore/TGStat/output/vacancy_channels.json",
+  "collection": "tg_vacancy_channels",
+  "limit": null,
+  "latest_ingestion_report": "/home/alexander/Projects/Competnecy/Explore/TGStat/output/ingestion_report_20260409_182904.json",
+  "all_ingestion_reports": [
+    "/home/alexander/Projects/Competnecy/Explore/TGStat/output/ingestion_report_20260409_182904.json"
+  ]
+}
