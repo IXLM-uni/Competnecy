@@ -13,21 +13,15 @@ import asyncio
 import json
 import logging
 import os
-import sys
 import uuid
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
-# Путь к корню проекта и Global_services
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
-_GLOBAL_SERVICES = str(_PROJECT_ROOT / "Global_services")
 
-if _GLOBAL_SERVICES not in sys.path:
-    sys.path.insert(0, _GLOBAL_SERVICES)
-
-from AI.llm_service import (  # noqa: E402
+from AI.llm_service import (
     LLMMessage,
     LLMRequest,
     RequestContext,

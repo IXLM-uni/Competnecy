@@ -41,11 +41,6 @@ from urllib.parse import urlparse
 
 from .llm_helpers import init_env, get_llm_client, get_env_config, call_llm, make_ctx
 
-# Global_services в sys.path (уже добавлен llm_helpers)
-_GLOBAL_SERVICES = os.path.join(os.path.dirname(__file__), '..', 'Global_services')
-if _GLOBAL_SERVICES not in sys.path:
-    sys.path.insert(0, _GLOBAL_SERVICES)
-
 from AI.llm_webcrawler import (
     CrawlerClient,
     CrawlerQueryRewriter
@@ -60,7 +55,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class SourceSpec:
     """Спецификация источника для сбора"""
-    source_type: str  # 'web_search', 'hh_vacancies', 'semantic_scholar', 'file_upload', 'telegram', 'reddit'
+    source_type: str  # 'web_search', 'hh_vacancies', 'semantic_scholar', 'file_upload', 'telegram', 'reddit', 'onet', 'sonar'
     query: str
     filters: Optional[Dict[str, Any]] = None
     limit: int = 50
@@ -137,6 +132,7 @@ class ResearchIngestionService:
                     'linkedin': self._collect_linkedin_sources,
                     'reddit': self._collect_reddit_sources,
                     'onet': self._collect_onet_sources,
+                    'sonar': self._collect_sonar_sources,
                     'file_upload': self._process_uploaded_files,
                 }
                 collector = collectors.get(spec.source_type)
@@ -193,16 +189,55 @@ class ResearchIngestionService:
         ]
         return any(s in check_text for s in deny_signals)
 
+    @staticmethod
+    def _clean_navigation_markdown(raw_text: str) -> str:
+        """Удаляет UI-навигацию из крауленных страниц: меню, логотипы, картинки,
+        строки из одних ссылок, footer. Применяется к web/hh-выводу crawler.
+        """
+        import re as _re
+
+        link_only_re = _re.compile(r"^\s*(?:\[[^\]]*\]\([^)]+\)\s*)+\s*$")
+        image_re = _re.compile(r"^\s*!\[[^\]]*\]\([^)]+\)")
+        footer_markers = (
+            "© ", "Все права защищены", "Политика конфиденциальности",
+            "Пользовательское соглашение", "Cookie", "Мы используем",
+            "Обратная связь", "Подписаться", "Соцсети",
+        )
+
+        cleaned = []
+        prev_empty = False
+        for line in raw_text.split("\n"):
+            stripped = line.strip()
+            if not stripped:
+                if not prev_empty:
+                    cleaned.append("")
+                prev_empty = True
+                continue
+            # Картинки
+            if image_re.match(stripped):
+                continue
+            # Только ссылки (меню, навигация)
+            if link_only_re.match(stripped):
+                continue
+            # Footer-маркеры — обрываем парсинг (всё дальше = footer)
+            if any(m in stripped for m in footer_markers):
+                break
+            # Очень длинные JSON-state строки
+            if len(stripped) > 1000 and stripped.startswith("{") and "\":" in stripped[:200]:
+                continue
+            cleaned.append(line)
+            prev_empty = False
+
+        return "\n".join(cleaned).strip()
+
     async def _collect_web_sources(self, spec: SourceSpec, role_scope: str) -> List[SourceArtifact]:
-        """Сбор из веб-поиска через CrawlerClient"""
+        """Сбор из веб-поиска через CrawlerClient + общая очистка markdown от UI-шума."""
         logger.info(f"ШАГ WEB.1. Переписываем запрос для роли: {spec.query}")
         ctx = make_ctx()
 
-        # Улучшаем поисковый запрос (возвращает List[str])
         enhanced_queries = await self.query_rewriter.rewrite(spec.query, ctx)
         logger.info(f"ШАГ WEB.2. Улучшенные запросы: {enhanced_queries}")
 
-        # Ищем через crawler (search принимает List[str], возвращает List[Snippet])
         snippets = await self.crawler_client.search(queries=enhanced_queries, ctx=ctx)
         logger.info(f"ШАГ WEB.3. Найдено {len(snippets)} сниппетов")
 
@@ -210,24 +245,33 @@ class ResearchIngestionService:
         for snippet in snippets:
             url = snippet.metadata.get('url', snippet.source_id)
             title = snippet.metadata.get('title', 'Untitled')
-            if snippet.text and not self._is_denied_content(snippet.text, title):
-                artifact = SourceArtifact(
-                    source_id=self._generate_source_id(url),
-                    source_type='web_search',
-                    title=title,
-                    content=snippet.text,
-                    url=url,
-                    metadata={
-                        'domain': urlparse(url).netloc,
-                        'original_query': spec.query,
-                        'enhanced_queries': enhanced_queries,
-                        'crawled_at': datetime.now().isoformat()
-                    },
-                    retrieved_at=datetime.now().isoformat()
-                )
-                artifacts.append(artifact)
-            elif snippet.text:
+            if not snippet.text:
+                continue
+            if self._is_denied_content(snippet.text, title):
                 logger.info(f"ШАГ WEB. SKIP denied content: {url[:60]}")
+                continue
+            cleaned = self._clean_navigation_markdown(snippet.text)
+            # Если после очистки осталось почти ничего — это страница-меню/каталог
+            if len(cleaned) < 200:
+                logger.info(f"ШАГ WEB. SKIP empty after cleanup: {url[:60]} ({len(cleaned)} chars)")
+                continue
+            artifact = SourceArtifact(
+                source_id=self._generate_source_id(url),
+                source_type='web_search',
+                title=title,
+                content=cleaned,
+                url=url,
+                metadata={
+                    'domain': urlparse(url).netloc,
+                    'original_query': spec.query,
+                    'enhanced_queries': enhanced_queries,
+                    'raw_chars': len(snippet.text),
+                    'cleaned_chars': len(cleaned),
+                    'crawled_at': datetime.now().isoformat()
+                },
+                retrieved_at=datetime.now().isoformat()
+            )
+            artifacts.append(artifact)
 
         return artifacts
     
@@ -263,14 +307,41 @@ class ResearchIngestionService:
         profession_names = extract_profession_names_from_md(professions_md)
         logger.info(f"ШАГ HH.2. Загружено {len(profession_names)} профессий из справочника")
 
-        # 2. LLM выбирает top-3 релевантных профессий через наш call_llm
-        select_prompt = f"""Из списка профессий на hh.ru выбери 3 наиболее релевантных для роли: {role_scope}
+        # 2. LLM выбирает top-3 релевантных профессий из ПОЛНОГО справочника.
+        # Старый срез [:200] выкидывал всю кириллицу — для русских ролей терялись
+        # ключевые «бизнес-аналитик», «финансовый аналитик», «ведущий аналитик».
+        # Промпт явно отделяет ROLE TITLE (что человек делает) от ИНСТРУМЕНТОВ
+        # (xlsx/SQL/VBA), ОТРАСЛИ (банк) и ОБЯЗАННОСТЕЙ (автоматизация, презентации) —
+        # иначе LLM подменяет «Аналитик данных в банке» на «кредитный аналитик»
+        # или «automation test engineer».
+        select_prompt = f"""Тебе дан полный справочник профессий с hh.ru. Выбери 3 названия,
+которые точнее всего соответствуют ОСНОВНОЙ ПРОФЕССИИ из роли.
 
-Профессии (первые 200):
-{chr(10).join(profession_names[:200])}
+Роль: {role_scope}
 
-Ответь ТОЛЬКО валидным JSON массивом, без пояснений:
-[{{"name": "название профессии точно как в списке", "reason": "почему релевантна"}}]"""
+КАК РАЗОБРАТЬ РОЛЬ:
+1. Найди ROLE TITLE — это первые 1-3 слова, обозначающие профессию (например,
+   «Аналитик Данных», «Менеджер по продажам», «Frontend Developer»).
+2. Всё остальное — это КОНТЕКСТ: отрасль («в банке»), инструменты («со знанием SQL»),
+   обязанности («автоматизировать процессы», «готовить презентации»).
+3. Контекст НЕ должен подменять ROLE TITLE. Подбирай профессии, аналогичные TITLE.
+
+ANTI-PATTERNS (НЕ делай так):
+- Роль «Аналитик данных в банке» → НЕ выбирай «кредитный аналитик»/«финансовый
+  аналитик»: они из той же отрасли, но это другая профессия.
+- Роль «Аналитик данных, автоматизирует процессы» → НЕ выбирай «automation test engineer»,
+  «инженер по автоматизации»: автоматизация — это его обязанность, а не специальность.
+- Роль «Аналитик данных, готовит презентации» → НЕ выбирай «бизнес-аналитик»: похоже,
+  но bizan работает с требованиями, а не с данными.
+
+Если в списке есть несколько вариантов основной профессии (junior/senior/ведущий) —
+бери базовый вариант + один уровневый, если уровень явно указан в роли.
+
+Список профессий ({len(profession_names)} шт., по одной на строку):
+{chr(10).join(profession_names)}
+
+Ответь ТОЛЬКО валидным JSON массивом из 3 элементов, без пояснений и markdown:
+[{{"name": "точное название из списка", "reason": "почему релевантна"}}]"""
 
         llm_response = await call_llm(select_prompt, temperature=0.1, max_output_tokens=500, streaming=False)
         selected = []
@@ -326,11 +397,12 @@ class ResearchIngestionService:
             for vac in vacancy_snippets:
                 if vac.text and not self._is_denied_content(vac.text):
                     url = vac.metadata.get("url", vac.source_id)
+                    title, clean_text = self._clean_hh_vacancy_markdown(vac.text)
                     prof_artifacts.append(SourceArtifact(
                         source_id=self._generate_source_id(url),
                         source_type="hh_vacancy",
-                        title=self._extract_vacancy_title(vac.text),
-                        content=vac.text,
+                        title=title,
+                        content=clean_text,
                         url=url,
                         metadata={
                             "source": "hh.ru",
@@ -483,42 +555,95 @@ class ResearchIngestionService:
             await qdrant.close()
 
         except Exception as e:
-            logger.error(f"ШАГ TG. ОШИБКА RAG-запроса к Qdrant: {e}")
+            import traceback
+            logger.error(f"ШАГ TG. ОШИБКА RAG-запроса к Qdrant: {type(e).__name__}: {e}\n{traceback.format_exc()}")
 
         logger.info(f"ШАГ TG.5. Собрано {len(artifacts)} Telegram источников из Qdrant")
         return artifacts
     
+    # Спам-маркеры в Reddit (продвижение курсов / партнёрки / Udemy free deals).
+    # Все встречены при сборе для роли «Аналитик данных» — топ-постов от
+    # u/slaconsultants*, u/easylearn___ing и т.п., которые забивали корпус мусором.
+    _REDDIT_SPAM_TITLE_MARKERS = (
+        "sla consultants", "by sla", "udemy", "free deals", "free udemy",
+        "enroll in", "best course", "best business analytics course",
+        "best data analyst course", "best financial modelling course",
+        "job oriented institute", "certified course", "certification course",
+        "course online and in delhi", "pwc & ibm certification",
+    )
+    _REDDIT_SPAM_AUTHOR_MARKERS = ("slaconsultants", "easylearn", "institute_", "courseonline")
+
+    # Тематические subreddits с высокой долей реальных обсуждений работы аналитика
+    # данных. Глобальный поиск приводил к r/udemyfreebies и партнёркам — этот
+    # белый список их фильтрует на этапе самого Reddit.
+    _REDDIT_DATA_SUBREDDITS = (
+        "datascience", "analytics", "dataanalysis", "BusinessIntelligence",
+        "SQL", "learnsql", "excel", "cscareerquestions", "datasciencejobs",
+    )
+
+    @classmethod
+    def _is_reddit_spam(cls, post) -> bool:
+        title_low = (post.title or "").lower()
+        if any(m in title_low for m in cls._REDDIT_SPAM_TITLE_MARKERS):
+            return True
+        author_low = (post.author or "").lower()
+        if any(m in author_low for m in cls._REDDIT_SPAM_AUTHOR_MARKERS):
+            return True
+        # Низкий score + субреддит про free deals — почти всегда спам
+        if (post.score or 0) <= 1 and "freebie" in (post.subreddit or "").lower():
+            return True
+        return False
+
     async def _collect_reddit_sources(self, spec: SourceSpec, role_scope: str) -> List[SourceArtifact]:
-        """Сбор обсуждений с Reddit — fast-fail на 403/CAPTCHA."""
+        """Сбор обсуждений с Reddit — fast-fail на 403/CAPTCHA + спам-фильтр.
+
+        Глобальный поиск отключён: для запросов про data analyst он стабильно
+        возвращает партнёрский спам про курсы SLA Consultants и Udemy free deals.
+        Вместо этого ищем по белому списку тематических subreddits.
+        """
         logger.info(f"ШАГ RD.1. Сбор Reddit источников: {spec.query}")
 
+        _REDDIT_DIR = Path(__file__).resolve().parent.parent / "Explore" / "Reddit"
+        if str(_REDDIT_DIR) not in sys.path:
+            sys.path.insert(0, str(_REDDIT_DIR))
+
         try:
-            from Reddit.reddit_client import create_reddit_client_from_env
+            from reddit_client import create_reddit_client_from_env
         except ImportError as exc:
             logger.warning(f"ШАГ RD.1. RedditClient не найден ({exc}) — skip")
             return []
 
-        limit_posts = min(spec.limit, 10)
+        # Запрашиваем больше чем нужно — после спам-фильтра останется меньше
+        limit_posts = min(spec.limit * 3, 30)
         artifacts: List[SourceArtifact] = []
 
         try:
-            # Весь Reddit блок с жёстким timeout 5с
-            async with asyncio.timeout(5):
+            async with asyncio.timeout(45):
                 async with create_reddit_client_from_env() as client:
-                    logger.info(f"ШАГ RD.2. Reddit глобальный поиск: {spec.query!r}, limit={limit_posts}")
+                    logger.info(
+                        f"ШАГ RD.2. Reddit поиск: query={spec.query!r}, "
+                        f"subreddits={list(self._REDDIT_DATA_SUBREDDITS)}, "
+                        f"limit={limit_posts} (с запасом под спам-фильтр)"
+                    )
                     posts = await client.search_posts(
                         query=spec.query,
-                        subreddits=None,  # Глобальный поиск (быстрее + обходит rate limits)
+                        subreddits=list(self._REDDIT_DATA_SUBREDDITS),
                         limit=limit_posts,
                         sort="relevance",
-                        time_filter="all",
+                        time_filter="year",
                     )
-                    logger.info(f"ШАГ RD.2. Найдено {len(posts)} постов ... УСПЕХ")
+                    spam_count = sum(1 for p in posts if self._is_reddit_spam(p))
+                    real_posts = [p for p in posts if not self._is_reddit_spam(p)][:spec.limit]
+                    logger.info(
+                        f"ШАГ RD.2. Получено {len(posts)} постов "
+                        f"(спам отфильтрован: {spam_count}, оставлено: {len(real_posts)})"
+                    )
 
-                    for p_idx, post in enumerate(posts, 1):
-                        comments = await client.get_post_comments(
-                            post_id=post.id, subreddit=post.subreddit, limit=3, sort="top",
-                        )
+                    for post in real_posts:
+                        # Comments-эндпоинт Reddit (`/comments/{id}.json`) сейчас
+                        # стабильно отдаёт 403 без OAuth. Раньше работал, теперь нет.
+                        # Берём только данные из search (title + selftext) — этого
+                        # достаточно для извлечения компетенций, комментарии = бонус.
                         md_lines = [
                             f"# {post.title}", "",
                             f"**r/{post.subreddit}** · u/{post.author} · {post.score} pts",
@@ -526,10 +651,6 @@ class ResearchIngestionService:
                         ]
                         if post.selftext and post.selftext not in ("[deleted]", "[removed]"):
                             md_lines.append(post.selftext[:2000])
-                        if comments:
-                            md_lines.append("\n## Топ комментарии\n")
-                            for c in comments:
-                                md_lines.append(f"> **u/{c.author}** · {c.score} pts\n> {c.body[:400]}\n")
                         artifact = SourceArtifact(
                             source_id=self._generate_source_id(post.full_url),
                             source_type="reddit",
@@ -537,13 +658,14 @@ class ResearchIngestionService:
                             content="\n".join(md_lines),
                             url=post.full_url,
                             metadata={"platform": "reddit", "subreddit": post.subreddit,
+                                      "score": post.score,
                                       "query": spec.query, "crawled_at": datetime.now().isoformat()},
                             retrieved_at=datetime.now().isoformat(),
                         )
                         artifacts.append(artifact)
 
         except (TimeoutError, asyncio.TimeoutError):
-            logger.warning("ШАГ RD. Reddit timeout 5с — skip")
+            logger.warning("ШАГ RD. Reddit timeout 45с — skip")
         except Exception as exc:
             logger.error(f"ШАГ RD. ОШИБКА Reddit: {exc}")
 
@@ -644,35 +766,81 @@ class ResearchIngestionService:
         else:
             return f"# {file_path.name}\n\n[Unsupported file type: {suffix}]"
     
+    # Стоп-слова, которые из role_scope не несут смысла и дают ложные совпадения
+    # (например, «в», «для», «со», «также»).
+    _ROLE_STOPWORDS = {
+        "и", "в", "на", "с", "со", "для", "по", "к", "у", "о", "об", "от", "из",
+        "за", "до", "при", "над", "под", "без", "то", "же", "ли", "не", "ни",
+        "а", "но", "или", "что", "как", "так", "также", "только", "уже", "ещё",
+        "the", "a", "an", "of", "for", "to", "in", "on", "with", "and", "or",
+    }
+
     def _keyword_filter(self, artifacts: List[SourceArtifact], role_scope: str) -> List[SourceArtifact]:
-        """Быстрая keyword-фильтрация без LLM (мгновенно)."""
-        # Извлекаем keywords из role_scope + связанные термины
-        role_words = set(role_scope.lower().split())
-        stems = {w[:4] for w in role_words if len(w) > 4}
-        role_words.update(stems)
-        # Дополнительные маркеры: программа, вакансия, навыки (рус+eng)
-        role_words.update(['skill', 'requirement', 'competenc', 'curriculum',
-                           'program', 'education', 'вакансия', 'навык',
-                           'компетенц', 'программа', 'образован'])
+        """Быстрая keyword-фильтрация без LLM (мгновенно).
+
+        Совпадения ищем по prefix-границам слов (\\b{stem}) — substring-матчинг
+        пропускал «программу передач» по «программа», а ТВ-каналы по «анал»
+        (оно matchится в «канал»). Также считаем role-specific и generic helpers
+        отдельно, чтобы по generic слову одна страница не проходила.
+        """
+        import re as _re
+
+        # 1. Role-specific keywords (из самой роли, без стоп-слов)
+        raw_words = [w.strip(".,;:!?()[]\"'«»") for w in role_scope.lower().split()]
+        role_specific = {w for w in raw_words if len(w) > 2 and w not in self._ROLE_STOPWORDS}
+        # Префиксы для русской флексии («аналитик», «аналитика», «аналитики»):
+        # берём первые 5 символов слова. Меньше 5 символов даёт ложные совпадения
+        # типа «анал» → «канал», «банк» → «банкет».
+        stems = {w[:5] for w in role_specific if len(w) > 6}
+        role_specific.update(stems)
+
+        # 2. Generic helpers (служебные термины, не служат основанием для пропуска)
+        generic_helpers = {
+            "skill", "requirement", "competenc", "curriculum", "education",
+            "вакансия", "навык", "компетенц", "программа", "образован",
+        }
+
+        def _hits(words: set, text: str) -> int:
+            return sum(1 for w in words if _re.search(rf"\b{_re.escape(w)}", text))
+
+        # Источники, которым keyword-фильтр неприменим: они уже структурированы
+        # или синтезированы из авторитетного источника, а контент англоязычный —
+        # русские role-keywords там не совпадут. ONET — англ. XLSX, Sonar — синтез,
+        # Reddit — англ. обсуждения отфильтрованного whitelist subreddits.
+        trusted_structured = ('onet', 'sonar', 'reddit')
 
         filtered = []
         for art in artifacts:
             if self._is_denied_content(art.content, art.title):
                 continue
             content_low = (art.title + ' ' + art.content[:2000]).lower()
-            # Считаем пересечение keywords
-            matches = sum(1 for w in role_words if w in content_low)
-            keyword_score = min(1.0, matches / max(len(role_words), 1))
-            # Для web/academic: keyword должен быть > 0.2 (хотя бы 1 keyword нашёлся)
-            # Для telegram: keyword + vector score
-            if art.source_type in ('telegram_qdrant',):
+            role_hits = _hits(role_specific, content_low)
+            generic_hits = _hits(generic_helpers, content_low)
+            # Score = смешанный, но порог проверяем по role_hits отдельно.
+            keyword_score = min(
+                1.0,
+                (role_hits + generic_hits * 0.3) / max(len(role_specific), 1),
+            )
+
+            if art.source_type in trusted_structured:
+                # Всегда пропускаем — источник авторитетный/синтезированный.
+                art.relevance_score = max(art.relevance_score or 0, keyword_score)
+                filtered.append(art)
+            elif art.source_type == 'telegram_qdrant':
+                # Вектор + keyword
                 combined = (art.relevance_score or 0) * 0.5 + keyword_score * 0.5
                 art.relevance_score = combined
-                if keyword_score > 0.15:  # Хотя бы часть keywords в тексте
+                if role_hits >= 2 or (art.relevance_score and art.relevance_score > 0.5):
                     filtered.append(art)
             else:
+                # hh_vacancy / linkedin / reddit / academic — обычно содержат
+                # несколько совпадений по role-specific словам. Web-сниппеты часто
+                # короче (1-2 совпадения) — порог снижен. Generic helpers
+                # («программа», «вакансия») сами по себе проходными не делают —
+                # иначе пропускали бы ТВ-программы и страницы про вакансии в зоопарке.
                 art.relevance_score = max(art.relevance_score or 0, keyword_score)
-                if keyword_score > 0.1 or len(art.content) > 500:
+                threshold = 1 if art.source_type == "web_search" else 2
+                if role_hits >= threshold:
                     filtered.append(art)
 
         filtered.sort(key=lambda x: x.relevance_score or 0, reverse=True)
@@ -762,14 +930,40 @@ class ResearchIngestionService:
             return []
         logger.info(f"ШАГ ONET.2. Загружено {len(titles)} O*NET профессий")
 
-        # 2. LLM выбирает top-3 (подаём ТОЛЬКО titles, не xlsx)
+        # 2. LLM выбирает top-3 (подаём ТОЛЬКО titles, не xlsx).
+        # Без явных правил LLM подменяет роль контекстом: для «Аналитика данных в банке»
+        # выбирал «Computer Systems Analysts» / «Business Intelligence Analysts» вместо
+        # точных Data Scientists / Statisticians / Financial Analysts.
         titles_text = "\n".join(titles)
-        select_prompt = f"""From this list of O*NET occupations, select the 3 most relevant for the role: {role_scope}
+        select_prompt = f"""You are mapping a job role to the closest O*NET occupations.
 
-Occupations:
+Role description (may be in Russian):
+{role_scope}
+
+HOW TO READ THE ROLE:
+1. Extract the ROLE TITLE (the profession itself: data analyst, sales manager, etc.).
+2. Treat the rest as CONTEXT: industry ("in a bank"), tools ("SQL, Excel, VBA"),
+   responsibilities ("automate processes", "make presentations"). Context must NOT
+   override the title.
+3. Pick O*NET occupations whose CORE WORK matches the title, even if the industry
+   isn't a perfect fit.
+
+ANTI-PATTERNS:
+- "Data analyst in a bank" → DO NOT pick "Computer Systems Analysts" (too generic) or
+  "Credit Analysts" (different profession). Prefer "Data Scientists",
+  "Statisticians", "Business Intelligence Analysts", "Financial Analysts" if multiple
+  industry-relevant options exist.
+- "Frontend developer who writes SQL" → DO NOT pick "Database Administrators".
+- Marketing manager with Excel automation → DO NOT pick "Computer Programmers".
+
+If multiple O*NET occupations are equally relevant, pick variants from different
+families (e.g., one closer to data, one closer to the industry) so the corpus has
+breadth.
+
+Available O*NET occupations:
 {titles_text}
 
-Reply with ONLY a JSON array of exact occupation titles from the list:
+Reply with ONLY a JSON array of 3 exact occupation titles from the list (no markdown):
 ["Title 1", "Title 2", "Title 3"]"""
 
         llm_response = await call_llm(select_prompt, temperature=0.1, max_output_tokens=200, streaming=False)
@@ -816,6 +1010,92 @@ Reply with ONLY a JSON array of exact occupation titles from the list:
         logger.info(f"ШАГ ONET.5. Сформировано {len(artifacts)} O*NET артефактов")
         return artifacts
 
+    async def _collect_sonar_sources(self, spec: SourceSpec, role_scope: str) -> List[SourceArtifact]:
+        """Сбор через Perplexity Sonar (OpenRouter) — skill-обёртка.
+
+        Каждый spec → один артефакт с готовым markdown-синтезом от Sonar + список
+        исходных URL в metadata. Модель задаётся через spec.filters['model']
+        (default 'perplexity/sonar-pro').
+        """
+        import re as _re
+
+        sonar_python = Path.home() / ".claude" / "skills" / "sonar-search" / ".venv" / "bin" / "python"
+        sonar_script = Path.home() / ".claude" / "skills" / "sonar-search" / "search.py"
+        if not sonar_python.exists() or not sonar_script.exists():
+            logger.warning(f"ШАГ SONAR. Skill не найден: {sonar_script} — skip")
+            return []
+
+        filters = spec.filters or {}
+        model = filters.get('model', 'perplexity/sonar-pro')
+        recency = filters.get('recency')
+        domains = filters.get('domains')
+
+        query = f"{role_scope} — {spec.query}" if spec.query else role_scope
+        logger.info(f"ШАГ SONAR.1. Запрос [{model}]: {query[:100]}")
+
+        cmd = [str(sonar_python), str(sonar_script), query, "--model", model]
+        if recency:
+            cmd.extend(["--recency", recency])
+        if domains:
+            cmd.extend(["--domains", domains])
+
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                *cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+            try:
+                stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=120)
+            except asyncio.TimeoutError:
+                proc.kill()
+                logger.error("ШАГ SONAR. Timeout 120с — skip")
+                return []
+        except Exception as exc:
+            logger.error(f"ШАГ SONAR. Ошибка запуска subprocess: {exc}")
+            return []
+
+        if proc.returncode != 0:
+            logger.error(f"ШАГ SONAR. Ненулевой exit code {proc.returncode}: {stderr.decode('utf-8', errors='ignore')[:500]}")
+            return []
+
+        response_md = stdout.decode('utf-8').strip()
+        if not response_md or len(response_md) < 100:
+            logger.warning(f"ШАГ SONAR.2. Слишком короткий ответ ({len(response_md)} chars) — skip")
+            return []
+
+        # Разделяем основной текст и блок источников
+        main_text = response_md
+        sources_md = ""
+        for marker in ("\n## Источники\n", "\n## Sources\n"):
+            if marker in response_md:
+                parts = response_md.split(marker, 1)
+                main_text = parts[0].strip()
+                sources_md = parts[1].strip()
+                break
+
+        # Извлекаем [title](url) из блока источников
+        source_refs = _re.findall(r"\[([^\]]+)\]\((https?://[^)]+)\)", sources_md)
+        logger.info(f"ШАГ SONAR.2. Получен ответ {len(response_md)} chars, {len(source_refs)} источников")
+
+        artifact = SourceArtifact(
+            source_id=self._generate_source_id(f"sonar:{model}:{spec.query or role_scope}"),
+            source_type="sonar",
+            title=f"Sonar [{model.split('/')[-1]}]: {(spec.query or 'общий запрос')[:70]}",
+            content=main_text,
+            url=None,
+            metadata={
+                "model": model,
+                "original_query": spec.query,
+                "full_query": query,
+                "source_refs": [{"title": t, "url": u} for t, u in source_refs],
+                "source_refs_count": len(source_refs),
+                "crawled_at": datetime.now().isoformat(),
+            },
+            retrieved_at=datetime.now().isoformat(),
+        )
+        return [artifact]
+
     def _extract_hh_vacancy_links(self, content: str) -> List[str]:
         """Извлечение ссылок на вакансии из hh.ru"""
         import re
@@ -823,13 +1103,104 @@ Reply with ONLY a JSON array of exact occupation titles from the list:
         pattern = r'https?://[^/]*hh\.ru/vacancy/\d+'
         return re.findall(pattern, content)[:20]  # Ограничиваем количество
     
-    def _extract_vacancy_title(self, content: str) -> str:
-        """Извлечение заголовка вакансии из markdown"""
-        lines = content.split('\n')
-        for line in lines[:5]:  # Ищем в первых строках
-            if line.startswith('#'):
-                return line.lstrip('#').strip()
-        return "Вакансия"
+    def _clean_hh_vacancy_markdown(self, raw_text: str) -> tuple:
+        """Очистка raw markdown вакансии с hh.ru до полезной части + извлечение title.
+
+        Источник мусора на страницах hh.ru:
+          1. Служебный «# Вакансия» из HTML <title>, дублирует реальный заголовок ниже.
+          2. Header / cookie-banner / меню до реального заголовка.
+          3. После описания вакансии: «## Похожие вакансии», «## Где предстоит работать»,
+             «## Адрес», «## Задайте вопрос работодателю», «## О компании» — это секции
+             страницы, не имеющие отношения к компетенциям.
+          4. Строки JSON-state hh.ru (renderRestriction, advantages, locale ...) —
+             встроенный inline data на 100K+ символов в одной строке.
+          5. Строки-картинки `![...](...)` и стандартные UI-меню «Войти», «Создать резюме».
+
+        Возвращает (title, cleaned_content). Если реальный title не найден — возвращает
+        (fallback_title, raw_text) без очистки.
+        """
+        lines = raw_text.split("\n")
+
+        # 1. Найти настоящий заголовок: первый «# X», где X != «Вакансия» и не пусто.
+        title = "Вакансия hh.ru"
+        title_idx = -1
+        for i, line in enumerate(lines):
+            stripped = line.strip()
+            if stripped.startswith("# ") and not stripped.startswith("## "):
+                candidate = stripped.lstrip("# ").strip()
+                if candidate and candidate.lower() != "вакансия":
+                    title = candidate
+                    title_idx = i
+                    break
+
+        if title_idx < 0:
+            return (title, raw_text)
+
+        # 2. Отрезать всё ДО заголовка (header, cookies, меню) и всё ПОСЛЕ перехода
+        # к мета-секциям страницы / похожим вакансиям.
+        cutoff_markers = (
+            "## Похожие вакансии",
+            "### Похожие вакансии",
+            "## Вакансии из других подборок",
+            "### Вакансии из других подборок",
+            "## Где предстоит работать",
+            "## Адрес",
+            "## Задайте вопрос работодателю",
+            "## О компании",
+            "## Контакты",
+        )
+        body_end = len(lines)
+        for i in range(title_idx + 1, len(lines)):
+            stripped = lines[i].strip()
+            if any(stripped.startswith(m) for m in cutoff_markers):
+                body_end = i
+                break
+
+        body = lines[title_idx:body_end]
+
+        # 3. Внутри body выбросить строки-картинки, JSON-state, чистые UI-меню.
+        ui_noise_markers = (
+            "Напишите телефон",
+            "Нажимая «Продолжить»",
+            "Создать резюме",
+            "[Войти]",
+            "Помогите",
+            "Cookie",
+            "Понятно",
+            "файлы cookie",
+        )
+        clean_body = []
+        for line in body:
+            stripped = line.strip()
+            if not stripped:
+                clean_body.append(line)
+                continue
+            # JSON-state hh: одна строка на десятки KB с {"...":...}
+            if len(stripped) > 1000 and stripped.startswith("{") and "\":" in stripped[:200]:
+                continue
+            # Очень длинные строки без markdown-структуры — почти всегда мусор
+            if len(stripped) > 5000:
+                continue
+            # Строки-картинки целиком: ![...](url) или ![alt](url)![](url)...
+            if stripped.startswith("![") and "](" in stripped and not any(c.isalpha() for c in stripped.split("](")[-1][:50]):
+                continue
+            # UI-маркеры
+            if any(m in stripped for m in ui_noise_markers):
+                continue
+            clean_body.append(line)
+
+        # 4. Схлопнуть подряд идущие пустые строки
+        collapsed = []
+        prev_empty = False
+        for line in clean_body:
+            is_empty = not line.strip()
+            if is_empty and prev_empty:
+                continue
+            collapsed.append(line)
+            prev_empty = is_empty
+
+        cleaned = "\n".join(collapsed).strip()
+        return (title, cleaned)
     
     def _generate_source_id(self, url: str) -> str:
         """Генерация уникального ID источника"""

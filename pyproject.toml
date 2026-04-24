@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "competency-pipeline"
+version = "0.1.0"
+description = "Competency extraction and curriculum generation pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    # Global_services (AI LLM/RAG/Crawler layer)
+    "nea-services",
+    # LLM
+    "openai>=1.0",
+    "httpx>=0.24",
+    # Web / API
+    "fastapi>=0.100",
+    "uvicorn>=0.20",
+    "sse-starlette>=1.0",
+    # Data
+    "pydantic>=2.0",
+    "pandas>=2.0",
+    "openpyxl>=3.0",
+    # RAG
+    "qdrant-client>=1.7",
+    # Env
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio"]
+
+[project.scripts]
+competency-pipeline = "competency_pipeline.run_cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["competency_pipeline"]
+
+[tool.hatch.build]
+exclude = [
+    # Не часть пакета
+    "Global_services/",
+    "Explore/",
+    "data/",
+    "artifacts/",
+    "bench_artifacts/",
+    "frontend/",
+    "infra/",
+    # Build artifacts
+    "*/__pycache__/",
+    "*.pyc",
+    ".venv/",
+    # Docs
+    "*.md",
+    # Runtime
+    "*.log",
+    "*.pdf",
+]
